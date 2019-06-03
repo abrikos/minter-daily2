@@ -12,7 +12,9 @@ node server/cron.js --day
 ;;
 
 "hour" )
+rm package-lock.json
 git pull
+npm i
 npm run build
 ;;
 esac
