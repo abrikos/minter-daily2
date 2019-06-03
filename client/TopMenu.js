@@ -10,7 +10,7 @@ import {
     DropdownMenu,
     Navbar,
     DropdownToggle,
-    UncontrolledDropdown,
+    UncontrolledDropdown, NavbarBrand,
 } from "reactstrap";
 import {withRouter, Link} from "react-router-dom";
 import {t, changeLanguage} from "./Translator";
@@ -43,8 +43,8 @@ class TopMenu extends React.Component {
             {path:'/about', label:t('Minesweeper'), show:true},
         ];
         return (
-            <Navbar color="dark" light expand="md">
-                <Link to='/' className='navbar-brand'><img src={logo} alt={'logo'}/> {t('projectName')}</Link>
+            <Navbar color="dark" dark expand="md">
+                <NavbarBrand href='/' className='mr-auto' ><img src={logo} alt={'logo'}/> {t('projectName')}</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={true} navbar>
                     <Nav className="ml-auto" navbar>

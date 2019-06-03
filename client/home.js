@@ -3,18 +3,23 @@ import {inject, observer} from "mobx-react";
 import {withRouter} from "react-router";
 import {action, observable} from "mobx";
 import {t} from './Translator'
-import {FormControl, InputGroup} from "react-bootstrap";
+import {FormControl, Input, InputGroup, InputGroupAddon} from "reactstrap";
 
 
 @withRouter @inject('store') @observer
 class App extends Component {
-	@observable totes = [];
-	url = {}
+	@observable code ='';
+	url = new URL(window.location.href)
 
 	constructor(props){
 		super(props)
+
+		this.parentCode = this.props.match.params.code
 	}
 
+	@action changePromo = e=> {
+		this.code = e.target.value;
+	};
 
 	render() {
 	    const data = this.props.store.serverData ? this.props.store.serverData : {};
@@ -25,7 +30,7 @@ class App extends Component {
 				className={'red'}>{data.address}</a></strong></li>
 			<li>Кошелек пополняется с покупки билетов</li>
 			<li>Стоимость билета: <strong className={'red'}>{data.price}</strong> BIP</li>
-			<li>Чтобы купить билет Вам необходимо при переводе BIP указать промо-код <code>this.url.hash.replace('#/','')}</code> в
+			<li>Чтобы купить билет Вам необходимо при переводе BIP указать промо-код <code>{this.parentCode}</code> в
 				поле <strong>"Message"</strong> вашего кошелька.
 				<ul>
 					<li className={'text-info'}>Транзакция без промо-кода считается подарком</li>
@@ -48,19 +53,16 @@ class App extends Component {
 			<li>Введите свой промо-код для получения ссылки
 
 				<InputGroup className="mb-3">
-					{/*<InputGroup.Prepend>
-						<InputGroup.Text id="basic-addon2">{this.url.origin}/#/</InputGroup.Text>
-					</InputGroup.Prepend>*/}
-					{/*<FormControl
-						placeholder="Ваш промо-код"
-						aria-label="Ваш промо-код"
-						aria-describedby="basic-addon2"
-						onChange={this.changePromo}
-					/>*/}
+					<InputGroupAddon addonType="prepend">{this.url.origin}</InputGroupAddon>
+					<Input placeholder="Ваш промо-код"
+						   aria-label="Ваш промо-код"
+						   aria-describedby="basic-addon2"
+						   onChange={this.changePromo}/>
+
 
 				</InputGroup>
 
-				Ваша ссылка: <pre> {`${this.url.origin}/#/${this.code}`}</pre>
+				Ваша ссылка: <pre> {`${this.url.origin}/promo/${this.code}`}</pre>
 
 
 			</li>

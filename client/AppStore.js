@@ -5,7 +5,7 @@ import {action, observable} from "mobx";
 class AppStore {
     @observable alert = {isOpen:false};
     @observable address = '';
-    @observable models = {};
+    @observable serverData = {};
     @observable loggedUser = false;
     appName = 'Minter Daily';
     constructor() {
