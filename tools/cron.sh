@@ -4,11 +4,11 @@ cd /home/abrikos/minter-daily2
 
 case "${1}" in
 "minute" )
-node server/cron.js --minute >>log/minute.log.txt
+node server/cron.js --minute >log/minute.log.txt
 ;;
 
 "minute5" )
-node server/cron.js --minute5 >>log/minute5.log.txt
+node server/cron.js --minute5 >log/minute5.log.txt
 ;;
 
 "day" )
