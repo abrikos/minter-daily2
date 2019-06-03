@@ -1,7 +1,8 @@
 import React from 'react';
 import { withRouter, Route,  Switch } from 'react-router-dom';
 import {inject, observer} from 'mobx-react';
-import Home from './home';
+import Home from './pages/home';
+import Promos from "./pages/Promos";
 
 @inject('store') @withRouter @observer
 class Routes extends React.Component {
@@ -18,6 +19,7 @@ class Routes extends React.Component {
             <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route path='/promo/:code' component={Home}/>
+                <Route path='/promos' component={Promos}/>
             </Switch>
         </>;
     };

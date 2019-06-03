@@ -23,6 +23,11 @@ class MinterApp {
         return await this.explorer( `/addresses/${this.address}/transactions`)
     };
 
+    async getValidTransactionsList() {
+        const txList = await this.getTransactionsList();
+        return txList.filter(t=>t.from!==this.address && parseFloat(t.data.value)>=this.config.price)
+    };
+
     async getTransaction(tx) {
         return await this.explorer('/transactions', `/${tx}`)
     };

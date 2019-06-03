@@ -11,6 +11,7 @@ import {Alert} from "reactstrap";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import i18n from "./i18n";
+import './css/App.css';
 
 library.add(faEdit)
 
@@ -47,8 +48,8 @@ class App extends Component {
 								<Routes store={this.store} {...props}/>
 							</div>
 							<footer className={'footer'}>
-                                <img src={'/images/logo.png'} alt={'Logo'} width={40}/>
-								<small className='float-right text-muted'>{this.version}</small>
+                                {/*<img src={'/images/logo.png'} alt={'Logo'} width={40}/>*/}
+								{/*<small className='float-right text-muted'>{this.version}</small>*/}
 
 							</footer>
 
