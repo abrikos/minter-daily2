@@ -3,104 +3,102 @@ const App = require('./minter-app');
 const argv = require('minimist')(process.argv.slice(2));
 const moment = require('moment');
 
-console.log(moment().format('YYYY-MM-DD HH:mm'));
-if (argv.day) {
-    dailyWinner();
-} else if (argv.minute) {
-    promoPayments();
+console.log('====================================== ',moment().format('YYYY-MM-DD HH:mm'),' ====================================================');
+init(argv);
 
-}else if(argv.minute5){
-    fileValidPromos();
+async function init(argv) {
+    await App.init();
+    if (argv.day) {
+        await dailyWinner();
+        await fileWinners()
+    } else if (argv.minute) {
+        sendPromoCode();
 
-}else if(argv.hour){
-    fileConfigData();
+    } else if (argv.minute5) {
+        fileValidPromos();
+        payForPromo();
+        fileConfigData();
+
+    } else if (argv.hour) {
+
+    }
+
 }
 
 
 async function dailyWinner() {
-    const lastDay = moment().unix() - 186400;
+    const validPromos = await App.getValidCodes();
+    const dayTxsIn = App.getTransactionsIn().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
+    const dayTxsOut = App.getTransactionsPayPromo().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
+    if (!dayTxsIn.length) return;
 
-    const txList = await App.getValidTransactionsList().catch(e => console.log(e));
-    const dayTxs = txList.filter(t => lastDay < moment(t.timestamp).unix() && t.from !== App.address && parseFloat(t.data.value) >= App.config.price);
-    if (!dayTxs.length) return;
-    let sum = 0;
     const players = []
-    for (const tx of dayTxs) {
-        sum += parseFloat(tx.data.value);
-        if (txHasValidPromo(tx, txList)) {
-            console.log(App.config.promoUp)
+    for (const tx of dayTxsIn) {
+        if (validPromos.indexOf(tx.message) !== -1) {
             for (let i = 0; i < App.config.promoUp; i++) {
-
-                players.push(tx.from)
+                players.push(tx)
             }
         } else {
-            players.push(tx.from)
+            players.push(tx)
         }
     }
-    const prize = sum * App.config.percentDaily;
+    const prize = App.getPrize();
+    if (prize <= 0) return ;
     const winner = players[Math.floor(Math.random() * players.length)];
     console.log(winner, prize)
-    await App.send(winner, prize, 'Winner');
+    await App.sendToWinner(winner, prize);
 }
 
 
-async function promoPayments() {
-    const txList = await App.getTransactionsList().catch(e => console.log(e));
-    // All transactions except from main address, No code and Less than price
-    for (const txData of txList) {
-        //console.log(txData); continue;
-        //get parent address from Message
-        const addressRequestToPay = App.decode(txData.payload);
+async function sendPromoCode(txList) {
+    const inputTxs = App.getTransactionsIn(txList);
+    const codesSent = App.getTransactionsSentCodes(txList);
 
-        if (!txPayedToParent(txData, txList)) {
-            const amount = App.config.price * App.config.percent;
-            console.log(`PAY ${amount} TO`, addressRequestToPay, 'FOR', txData.hash)
-            await App.send(addressRequestToPay, amount, txData.hash);
+    const noCodesSent = inputTxs.filter(tx => codesSent.map(t => t.to).indexOf(tx.from) === -1);
+    for (const txData of noCodesSent) {
+        await App.sendCode(txData.from).catch(console.error)
+    }
+};
+
+async function payForPromo(txList) {
+    // All transactions except from main address, No code and Less than price
+    const payedPromo = App.getTransactionsPayPromo();
+    for (const txData of App.getTransactionsWithValidPromo(txList)) {
+        //get parent address from Message
+        if (payedPromo.map(tx => tx.hash).indexOf(txData.hash) === -1 && txData.value >= App.getPrice()) {
+            await App.payPromo(txData);
         }
     }
 }
 
-function txPayedToParent(txData, txList) {
-    const arr = txList.filter(tx => (tx.block >= txData.block) && (App.decode(tx.payload) === txData.hash));
-    return !!arr;
+
+function txAlreadyPayed(txData, txList) {
+    const arr = txList.filter(tx => App.txIsPromoPayment(tx) && tx.message.payedFor === txData.hash);
+    return arr.length > 0;
 }
 
 
 async function fileValidPromos() {
-    const txList = await App.getValidTransactionsList().catch(e => console.log(e));
-    // All transactions except from main address, No code and Less than price
-    const validPromos = ['Mxdbe76e78f9ba5e5ed0c9835b493d4765c8199d4c'];
-    for (const txData of txList) {
-        //console.log(txData); continue;
-        //get parent address from Message
-        const addressRequestToPay = App.decode(txData.payload);
-
-        if (txHasValidPromo(txData, txList)) {
-            const promo = App.decode(txData.payload);
-            if (validPromos.indexOf(promo) === -1) {
-                validPromos.push(promo);
-            }
-        }
-    }
+    const validPromos = App.getValidCodes();
     console.log(validPromos)
     writeDataFiles('promos', validPromos);
 }
 
-
-function txHasValidPromo(txData, txList) {
-    const promoCode = App.decode(txData.payload);
-    if (!promoCode) return false;
-    const arr = txList.find(t => t.from === promoCode && t.data.value >= App.config.price && t.block <= txData.block)
-    return !!arr;
+async function fileWinners() {
+    const validPromos = App.getTransactionsWinner();
+    console.log(validPromos)
+    writeDataFiles('winners', validPromos);
 }
 
 
-async function fileConfigData() {
-    const balance = await App.getBalance();
+function fileConfigData() {
+    const balance = App.getPrize().toFixed(2);
+    const players = App.getPlayers().length;
     const config = App.config;
     const json = {
         //payed: payed.toFixed(2),
-        balance: balance.toFixed(2),
+        players,
+        balance,
         percentDaily: config.percentDaily,
         percent: config.percent,
         price: config.price,

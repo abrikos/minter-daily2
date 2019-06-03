@@ -7,7 +7,7 @@ import { createBrowserHistory as createHistory } from 'history';
 import Routes from './Routes';
 import STORE from './AppStore';
 import TopMenu from "./TopMenu";
-import {Alert} from "reactstrap";
+import {Alert, Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle} from "reactstrap";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import i18n from "./i18n";
@@ -27,7 +27,6 @@ class App extends Component {
         this.store = STORE;
 		this.register = !!props.register || false;
 		this.history = props.history  || createHistory (this.props);
-		console.log(new Date())
 	}
 
 	onDismiss = ()=> {
@@ -36,6 +35,7 @@ class App extends Component {
 
 	render() {
 		let { rootPath, ...props } = this.props;
+
 		const alertProps = this.store.alert;
 		return (
 			<Provider store={this.store}>
@@ -45,12 +45,63 @@ class App extends Component {
 							<TopMenu/>
 							<Alert toggle={this.onDismiss} {...alertProps}/>
 							<div className={'container'}>
-								<Routes store={this.store} {...props}/>
-							</div>
-							<footer className={'footer'}>
-                                {/*<img src={'/images/logo.png'} alt={'Logo'} width={40}/>*/}
-								{/*<small className='float-right text-muted'>{this.version}</small>*/}
+								<div className={'row'}>
+									<div className={'col-8'}>
+										<Routes store={this.store} {...props}/>
+									</div>
+									<div className={'col-4'}>
 
+
+											<Card className={'m-4'}>
+												<CardBody>
+													<CardTitle>Приз на {new Date().toLocaleDateString()}</CardTitle>
+													<CardSubtitle><span className={'big5'}>{this.store.serverData.balance}</span> BIP</CardSubtitle>
+													<CardText>Участников: {this.store.serverData.players}</CardText>
+												</CardBody>
+											</Card>
+
+
+									</div>
+
+								</div>
+
+							</div>
+
+
+							<footer className="footer">
+								<div className="footer__container u-container u-container--large"><img
+									src="https://console.minter.network/img/minter-logo-white.svg" alt="Minter" className="footer__logo"/>
+									<div className="footer__menu">
+										<div className="footer__menu-item"><a href="https://www.minter.network/"
+																			  target="_blank" rel="nofollow noopener"
+																			  className="footer__link link--hover">Intro</a>
+										</div>
+										<div className="footer__menu-item"><a href="https://about.minter.network/"
+																			  target="_blank" rel="nofollow noopener"
+																			  className="footer__link link--hover">Network</a>
+										</div>
+										<div className="footer__menu-item"><a href="https://console.minter.network/"
+																			  target="_blank" rel="nofollow noopener"
+																			  className="footer__link link--hover">Console</a>
+										</div>
+										<div className="footer__menu-item"><a href="https://status.minter.network/"
+																			  target="_blank" rel="nofollow noopener"
+																			  className="footer__link link--hover">Status</a>
+										</div>
+										<div className="footer__menu-item"><a href="https://explorer.minter.network/"
+																			  target="_blank" rel="nofollow noopener"
+																			  className="footer__link link--hover">Explorer</a>
+										</div>
+										<div className="footer__menu-item"><a href="https://github.com/MinterTeam"
+																			  target="_blank" rel="nofollow noopener"
+																			  className="footer__link link--hover">API &amp; SDK</a>
+										</div>
+										<div className="footer__menu-item"><a href="https://docs.minter.network"
+																			  target="_blank" rel="nofollow noopener"
+																			  className="footer__link link--hover">Docs</a>
+										</div>
+									</div>
+								</div>
 							</footer>
 
 						</div>

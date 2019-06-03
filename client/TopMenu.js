@@ -28,6 +28,7 @@ class TopMenu extends React.Component {
         this.state = {
             collapsed: true
         };
+        document.title = 'Minter Daily';
     }
 
     navItem = (item) => {
@@ -43,6 +44,7 @@ class TopMenu extends React.Component {
     render() {
         const menuItems = [
             {path: '/', label: t('Home'), show: true},
+            {path: '/winners', label: t('Winners'), show: true},
             {path: '/promos', label: t('Valid promo-codes'), show: true},
         ];
         return (

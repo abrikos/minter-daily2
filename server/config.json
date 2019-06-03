@@ -1,9 +1,9 @@
 {
   "appName": "Minter Daily",
-  "price": 1,
+  "price": 0.1,
   "percent": 0.5,
   "percentDaily": 0.90,
-  "promoUp": 3,
+  "promoUp": 4,
   "mainNet": {
     "explorerUrl": "https://explorer-api.minter.network/api/v1",
     "symbol": "BIP",
