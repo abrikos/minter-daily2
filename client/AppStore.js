@@ -1,6 +1,7 @@
 import {action, observable} from "mobx";
 import config from './lib/config'
-import Minter from "./lib/Minter";
+import Minter from "./lib/MinterCore";
+
 
 class AppStore {
     @observable alert = {isOpen: false};

@@ -3,8 +3,8 @@ const config = require("./config");
 const network = config.mainNet;
 const moment = require('moment');
 const axios = require("axios");
-const minter = require('minter-js-sdk')
-const minterSDK = new minter.Minter({apiType: 'node', baseURL: network.apiUrl});
+const minterCore = require('minter-js-sdk')
+const minterSDK = new minterCore.Minter({apiType: 'node', baseURL: network.apiUrl});
 
 
 class Minter {
@@ -23,10 +23,6 @@ class Minter {
 
     async loadTtransactions() {
         this.transactions = await this.getTransactionsList().catch(e => console.log(e));
-    }
-
-    getBlocks=async()=>{
-        return await this.explorer(`/blocks`)
     }
 
     getPrice() {
@@ -133,7 +129,7 @@ class Minter {
     };
 
     async send(address, amount, message) {
-        const txParams = new minter.SendTxParams({
+        const txParams = new minterCore.SendTxParams({
             privateKey: process.env[network.test ? 'PRIVATE_KEY_TEST' : 'PRIVATE_KEY_MAIN'],
             chainId: 1,
             address,
@@ -165,5 +161,6 @@ class Minter {
         return Buffer.from(value, 'base64').toString('ascii')
     };
 };
+
 
 export default new Minter()
