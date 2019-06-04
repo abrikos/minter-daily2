@@ -17,6 +17,8 @@ class Layout extends Component {
         this.register = !!props.register || false;
         this.history = props.history || createHistory(this.props);
         this.balance = props.store.Minter.getPrize().toFixed(2);
+        this.players = props.store.Minter.getDailyTransactions().length;
+
     }
 
 
@@ -45,7 +47,7 @@ class Layout extends Component {
                                     <CardTitle>Приз на {new Date().toLocaleDateString()}</CardTitle>
                                     <CardSubtitle><span
                                         className={'big5'}>{this.balance}</span> BIP</CardSubtitle>
-                                    <CardText>Участников: {this.props.store.config.players}</CardText>
+                                    <CardText>Участников: {this.players}</CardText>
                                 </CardBody>
                             </Card>
 

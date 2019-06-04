@@ -29,13 +29,12 @@ class Minter {
         return this.config.price;
     };
 
-    getPlayers() {
-        const x=  this.getTransactionsIn().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
-        return x;
+    getDailyTransactions(){
+        return this.getTransactionsIn().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
     }
 
     getPrize() {
-        const dayTxsIn = this.getTransactionsIn().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
+        const dayTxsIn = this.getDailyTransactions()
         const dayTxsOut = this.getTransactionsPayPromo().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
         let sum = 0;
         for (const tx of dayTxsIn) {
