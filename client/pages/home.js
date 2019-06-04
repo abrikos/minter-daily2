@@ -30,7 +30,7 @@ class Home extends Component {
                 <li>
                     <h1>Отправьте <strong className={'big2'}>{data.price}</strong> BIP на адрес:</h1>
                     <strong
-                        className={'big2'}><a
+                        className={'wallet-address'}><a
                         href={`https://explorer.minter.network/address/${this.address}`}
                         className={'red'}>{this.address}</a></strong>
                 </li>
@@ -40,7 +40,7 @@ class Home extends Component {
 
                 <li>
                     А затем, <strong className={'big2'}>чтобы</strong> я Вам, при всем своем уважении, обеспечил
-                    возможность <strong className={'big2'}>получить&nbsp;Бипов&nbsp;</strong>поболее , а в
+                    возможность <strong className={'big2'}>получить&nbsp;Бипов</strong> поболее, а в
                     хороший день и гораздо <strong className={'big2'}>поболее.</strong>
                 </li>
 
@@ -83,7 +83,7 @@ class Home extends Component {
 
 
             <a name={'rules'}/>
-            <h2>Все что находится <span className={'red'}>ниже</span> можно называть "Правила и условия лотерии"</h2>
+            <h4>Все что находится <span className={'red'}>ниже</span> можно называть "Правила и условия лотерии"</h4>
             <ul>
                 <li>
                     <h3>Партнерская программа <span className={'big2'}>{data.percent * 100}%</span></h3>

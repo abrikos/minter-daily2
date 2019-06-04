@@ -31,15 +31,15 @@ class Layout extends Component {
 
         const alertProps = this.store.alert;
         return (
-            <div className='container-fluid'>
+            <div>
                 <TopMenu/>
                 <Alert toggle={this.onDismiss} {...alertProps}/>
-                <div className={'container p-4'}>
+                <div className={'container'}>
                     <div className={'row'}>
-                        <div className={'col-8'}>
+                        <div className={'col-md-8'}>
                             <Routes store={this.store} {...props}/>
                         </div>
-                        <div className={'col-4'}>
+                        <div className={'col-md-4'}>
 
 
                             <Card>
