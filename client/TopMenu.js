@@ -11,6 +11,7 @@ import logo from './logo.svg'
 class TopMenu extends React.Component {
     @observable address = '';
     @observable balance = 0;
+    @observable menuPulled = false;
 
     constructor(props) {
         super(props);
@@ -40,8 +41,8 @@ class TopMenu extends React.Component {
         return (
             <Navbar color="dark" dark expand="md">
                 <NavbarBrand href='javascript:void(0)' onClick={e => this.props.history.push('/')} className='mr-auto'><img src={logo} alt={'logo'}/> {t('projectName')}</NavbarBrand>
-                <NavbarToggler onClick={this.toggle}/>
-                <Collapse isOpen={true} navbar>
+                <NavbarToggler onClick={e=>this.menuPulled = !this.menuPulled} navbar/>
+                <Collapse isOpen={this.menuPulled} navbar>
                     <Nav className="ml-auto" navbar>
                         {menuItems.map(this.navItem)}
                         {/*<UncontrolledDropdown nav inNavbar>
