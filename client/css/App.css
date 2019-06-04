@@ -9,7 +9,24 @@
   font-size: 5em;
   color: #d15c22; }
 
+.green {
+  color: #025; }
+
+.rotated {
+  position: absolute;
+  color: #f00;
+  -webkit-transform: rotate(-30deg);
+  -moz-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  transform: rotate(30deg); }
+
 .test {
   color: red; }
+
+.big-line-spacing li {
+  margin: 30px 0; }
+  .big-line-spacing li a {
+    text-decoration: underline; }
 
 /*# sourceMappingURL=App.css.map */
