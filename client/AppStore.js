@@ -1,23 +1,15 @@
 import {action, observable} from "mobx";
-
+import config from './lib/config'
+import Minter from "./lib/Minter";
 
 class AppStore {
     @observable alert = {isOpen: false};
-    @observable address = '';
-    @observable serverData = {};
-    @observable loggedUser = false;
+    @observable config = config;
+    @observable Minter = Minter;
 
-
-    constructor() {
-        fetch('/data.json').then(res => res.json())
-            .then(json => {
-                console.log(json)
-                this.serverData = json
-            });
-
-    }
 
     @action init = async () => {
+        await this.Minter.loadTtransactions();
         console.log('Store init');
 
     };
