@@ -1,23 +1,18 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
 import {withRouter} from "react-router";
-import {action, observable} from "mobx";
+import {observable} from "mobx";
 import {t} from '../Translator'
-import {Input, InputGroup, InputGroupAddon} from "reactstrap";
-import {Link} from "react-router-dom";
 
 
-@withRouter @inject('store') @observer
+@inject('store')
 class Winners extends Component {
     @observable items = [];
 
     constructor(props) {
         super(props)
-
-        fetch('/winners.json').then(res => res.json())
-            .then(json => {
-                this.items = json
-            });
+        this.items = props.store.Minter.getTransactionsWinner()
+        console.log('zzzzzzzzzzzzzz',this.items)
     }
 
     render() {

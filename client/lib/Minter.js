@@ -1,4 +1,3 @@
-require('dotenv').config();
 const config = require("./config");
 //const api = `https://${config.mainNet}/api/v1`;
 const network = config.mainNet;
@@ -8,7 +7,7 @@ const minter = require('minter-js-sdk')
 const minterSDK = new minter.Minter({apiType: 'node', baseURL: network.apiUrl});
 
 
-class MinterApp {
+class Minter {
 
 
     constructor() {
@@ -22,8 +21,12 @@ class MinterApp {
         };
     }
 
-    async init() {
+    async loadTtransactions() {
         this.transactions = await this.getTransactionsList().catch(e => console.log(e));
+    }
+
+    getBlocks=async()=>{
+        return await this.explorer(`/blocks`)
     }
 
     getPrice() {
@@ -85,12 +88,7 @@ class MinterApp {
         return this.getTransactionsSentCodes().map(tx => tx.message)
     }
 
-    getTesst(){
-        return [1,2,3]
-    }
-
     getTransactionsWinner() {
-
         return this.getTransactionsOut().filter(t => t.message.type === this.types.winner)
     }
 
@@ -168,5 +166,4 @@ class MinterApp {
     };
 };
 
-
-module.exports = new MinterApp();
+export default new Minter()

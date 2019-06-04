@@ -4,13 +4,9 @@ import {withRouter} from "react-router";
 import {action, observable} from "mobx";
 import {t} from '../Translator'
 import {Input, InputGroup, InputGroupAddon} from "reactstrap";
-import {Link} from "react-router-dom";
 
-const {MDText} = require('i18n-react');
-const T = new MDText({
-    greeting: "#Hello, World!\n My name is **{myName}**! \n {{howAreYou}}",
-    howAreYou: "_How do you do?_"
-}, {MDFlavor: 1});
+
+
 
 @withRouter @inject('store') @observer
 class Home extends Component {
@@ -19,7 +15,7 @@ class Home extends Component {
 
     constructor(props) {
         super(props)
-
+        this.address = this.props.store.Minter.address;
         this.parentCode = this.props.match.params.code
     }
 
@@ -28,14 +24,12 @@ class Home extends Component {
     };
 
     render() {
-        const data = this.props.store.serverData ? this.props.store.serverData : {};
-        const count = 99;
-        const name = 'fdfd';
+        const data = this.props.store.config;
         return <div>
             <ul>
                 <li><h3 className={'red'}>{t('Bid address', {param: "10"})}: <strong><a
-                    href={`https://explorer.minter.network/address/${data.address}`}
-                    className={'red'}>{data.address}</a></strong></h3></li>
+                    href={`https://explorer.minter.network/address/${this.address}`}
+                    className={'red'}>{this.address}</a></strong></h3></li>
                 <li>Ежедневно одна из ставок дня получает {data.percentDaily * 100}% от всех ставок за вычетом
                     реферальных
                     отчислений за день (день - это сутки)

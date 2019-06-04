@@ -20,7 +20,7 @@ class App extends Component {
 
 
     render() {
-        let {rootPath, ...props} = this.props;
+        let {rootPath} = this.props;
         return (
             <Provider store={this.props.store}>
                 <Router history={this.history}>

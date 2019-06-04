@@ -3,6 +3,7 @@ import { withRouter, Route,  Switch } from 'react-router-dom';
 import {inject, observer} from 'mobx-react';
 import Home from './pages/home';
 import Promos from "./pages/Promos";
+import Winners from "./pages/Winners";
 
 @inject('store') @withRouter @observer
 class Routes extends React.Component {
@@ -20,6 +21,7 @@ class Routes extends React.Component {
                 <Route exact path='/' component={Home}/>
                 <Route path='/promo/:code' component={Home}/>
                 <Route path='/promos' component={Promos}/>
+                <Route path='/winners' component={Winners}/>
             </Switch>
         </>;
     };
