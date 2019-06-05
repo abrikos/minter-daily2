@@ -1,6 +1,6 @@
 {
   "appName": "Minter Daily",
-  "net": "testNet",
+  "net": "mainNet",
   "games": {
     "lottery": {
       "name": "Minter-Daily Lottery",
