@@ -22,7 +22,7 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
-const WebpackAutoInject = require('webpack-auto-inject-version');
+//const WebpackAutoInject = require('webpack-auto-inject-version');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -426,7 +426,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new WebpackAutoInject(),
+    //new WebpackAutoInject(),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
