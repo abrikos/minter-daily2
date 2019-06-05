@@ -6,14 +6,14 @@ import {t} from '../Translator'
 import {Input, InputGroup, InputGroupAddon} from "reactstrap";
 
 
-@withRouter @inject('store') @observer
-class Home extends Component {
+@inject('store') @observer
+class PageHome extends Component {
     @observable code = '';
     url = new URL(window.location.href)
 
     constructor(props) {
         super(props)
-        this.address = this.props.store.Minter.address;
+        this.address = this.props.store.Lottery.address;
         this.parentCode = this.props.match.params.code
     }
 
@@ -64,7 +64,7 @@ class Home extends Component {
                 </li>
 
                 <li>
-                    Вы, я уверен, человек понимающий и сразу же захотите вновь вопрошать: <strong className={'big2'}>Это
+                    Я полностью поглощен уверенностью, что Вы человек понимающий и уже имеете целью поинтересоваться: <strong className={'big2'}>Это
                     пирамида?</strong>
                     А я, положа руку на всю свою жизненную грусть, отвечу Вам честно: <strong className={'big2'}>Да!
                     Но...</strong>
@@ -73,10 +73,10 @@ class Home extends Component {
 
                 <li>
                     Каждый, неуловимый ни взглядом, ни слухом, момент, когда начинаются вчера и завтра, или иначе
-                    говоря <strong className={'big2'}>Ежедневно</strong> будет высчитываться и отправляться <strong
+                    говоря <strong className={'big2'}>Ежедневно</strong> будет формироваться и отправляться <strong
                     className={'big2'}>приз</strong> одному из случайных счастливчиков прожитого дня, кто решился отдать
                     себя в руки Фортуны.
-                    Стать баловнем ежедневной судьбы помогут промо-коды, и это тоже хорошая вещь, о которой подробнее <a
+                    А стать баловнем ежедневной судьбы Вам помогут промо-коды, и это тоже хорошая вещь, о которой подробнее <a
                     href="#rules">ниже</a>.
                 </li>
             </ul>
@@ -92,30 +92,30 @@ class Home extends Component {
                 </li>
 
                 <li>
-                    Ставки в которых был использован валидный <span className={'big2'}>промо-код</span> попадают в лист
-                    претендентов на ежедневный приз <span className={'big2'}>{data.promoUp} раза</span>.
+                    Ставки в которых был использован валидный <span className={'big2'}>промо-код</span> увеличивают свой шанс получить ежедневный приз  попадая в лист
+                    выбора победителя  <span className={'big2'}>{data.promoChance} раза</span>. Из этого листа выбирается 1 случайная ставка и на адрес откуда она пришла отправляется ежедневный приз.
                 </li>
 
                 <li>
-                    Ежедневный приз формируется так: <strong className={'red'}>{data.percentDaily * 100}%</strong> от
+                    Ежедневный приз формируется как <strong className={'red'}>{data.percentDaily * 100}%</strong> от
                     всех ставок за сутки
-                    минус отчисления за промо-коды.
+                    минус отчисления за ставки по промо-кодам.
                 </li>
 
-                <li>Цена ставки (так и хочется ее назвать <span className={'red'}>"биплет"</span>:) - <span
+                <li>Цена ставки (назовем ее  <span className={'red'}>"биплет"</span>:) - <span
                     className={'big2'}>{data.price}</span> BIP
                 </li>
                 <li className={'text-info'}>Транзакция суммой менее <strong className={'red'}>{data.price}</strong> BIP
                     считается подарком
                 </li>
-                <li>После того как Вы сделали ставку на адрес вашего кошелька придет <strong>транзакция 0 BIP</strong> с
+                <li>После того как Вы купили <span className={'red'}>биплет</span> на адрес вашего кошелька придет <strong>транзакция 0 BIP</strong> с
                     Вашим промо-кдом в поле <strong>"Message"</strong>
                 </li>
 
                 <li>Приглашайте новых участников с помощью Вашего промо-кода и Вы будете получать {data.percent * 100}%
                     с
-                    каждой ставки где использован этот промо-код. Партнерские вознаграждения отправляются на тот же
-                    адрес куда пришел промо-код.
+                    каждого купленного <span className={'red'}>биплета</span> (если в поле <strong>"Message"</strong> указан Ваш промо-код).
+                    Партнерские вознаграждения отправляются на тот же                    адрес куда лотерея отправила промо-код.
                 </li>
 
                 {this.parentCode &&
@@ -143,4 +143,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default PageHome;

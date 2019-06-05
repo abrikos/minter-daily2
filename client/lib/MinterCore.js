@@ -1,62 +1,24 @@
 const config = require("./config");
 //const api = `https://${config.mainNet}/api/v1`;
-const network = config.mainNet;
 const moment = require('moment');
 const axios = require("axios");
-const minterCore = require('minter-js-sdk')
-const minterSDK = new minterCore.Minter({apiType: 'node', baseURL: network.apiUrl});
+const minterCore = require('minter-js-sdk');
+require('dotenv').config()
 
 
 class Minter {
 
 
     constructor() {
-        this.address = network.address;
         this.config = config;
-        this.codePrepend = 'MD-PROMO-';
-        this.types = {
-            payPromo: 'promo-payment',
-            sendCode: 'send-code',
-            winner: this.config.appName + ': You win!'
-        };
+        this.network = config[config.net];
+        this.WinnerType = "winner";
     }
 
-    async loadTtransactions() {
-        this.transactions = await this.getTransactionsList().catch(e => console.log(e));
-    }
-
-    getPrice() {
-        return this.config.price;
-    };
-
-    getDailyTransactions(){
-        return this.getTransactionsIn().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
-    }
-
-    getPrize() {
-        const dayTxsIn = this.getDailyTransactions()
-        const dayTxsOut = this.getTransactionsPayPromo().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
-        let sum = 0;
-        for (const tx of dayTxsIn) {
-            sum += tx.value;
-        }
-        let diff = 0
-        for (const tx of dayTxsOut) {
-            diff -= tx.value;
-        }
-        return (sum + diff) * this.config.percentDaily;
-
-    }
-
-    async getBalance() {
-        const wallet = await this.explorer(`/addresses/${this.address}`);
-        return parseFloat(wallet.balances.find(b => b.coin === 'BIP').amount)
-    }
-
-
-    async getTransactionsList() {
-        const list = await this.explorer(`/addresses/${this.address}/transactions`)
-        return list.map(tx => {
+    async loadTtransactions(address) {
+        //this.transactions = await this.getTransactionsList().catch(e => console.log(e));
+        const list = await this.explorer(`/addresses/${address}/transactions`)
+        this.transactions = list.map(tx => {
             const message = this.decode(tx.payload);
             tx.value = parseFloat(tx.data.value);
             tx.to = tx.data.to;
@@ -66,90 +28,62 @@ class Minter {
                 tx.message = message;
             }
             return tx;
-        });
-    };
+        }).filter(tx => tx.message !== 'this is a gift');
+        const dayMarks = this.transactions.filter(tx => tx.message && tx.message.type === this.WinnerType);
+        let lastDate;
+        for (const tx of dayMarks) {
+            const time = moment(tx.timestamp).unix();
+            if (!lastDate) {
+                lastDate = time;
+                continue;
+            }
+            if (lastDate > time) lastDate = time;
+        }
 
-    getTransactionsIn() {
-        //const txList = await this.getTransactionsList();
-        return this.transactions.filter(t => t.from !== this.address)
-    };
 
-    getTransactionsOut() {
-        //const txList = await this.getTransactionsList();
-        return this.transactions.filter(t => t.from === this.address)
-    };
-
-    getValidCodes() {
-        return this.getTransactionsSentCodes().map(tx => tx.message)
+        this.transactionsDay = lastDate ? this.transactions.filter(t => moment(t.timestamp).unix() > lastDate) : this.transactions;
+        this.transactionsIn = this.transactionsDay.filter(t => t.from !== address);
+        this.transactionsOut = this.transactionsDay.filter(t => t.from === address);
+        this.transactionsWinners = this.transactions.filter(t => t.from === address && t.message && t.message.type===this.WinnerType);
     }
 
-    getTransactionsWinner() {
-        return this.getTransactionsOut().filter(t => t.message.type === this.types.winner)
+    async sendToWinner(game, winner, amount) {
+        await this.send(game, winner.from, amount, {message:this.config.games[game].name+": You Win!",type:this.WinnerType, hash:winner.hash});
     }
 
-    async sendToWinner(winner, amount) {
-        console.log(winner.from, amount, JSON.stringify({type: this.types.winner}));
-        await this.send(winner.from, amount, JSON.stringify({type: this.types.winner, hash:winner.hash}));
+    async getLastBlock(){
+        return await this.explorer('/blocks');
     }
 
-    getTransactionsWithValidPromo() {
-        //const txList = await this.getTransactionsList();
-        const codesSent = this.getValidCodes();
-        return this.getTransactionsIn().filter(t => t.message && (typeof t.message === "string") && codesSent.indexOf(t.message) !== -1)
-    };
+    async send(game, address, amount, message) {
+        const minterSDK = new minterCore.Minter({apiType: 'node', baseURL: this.network.apiUrl});
 
-    getTransactionsSentCodes() {
-        return this.getTransactionsOut().filter(t => (typeof t.message === "string") && t.message.indexOf(this.codePrepend) !== -1)
-    };
-
-    getTransactionsPayPromo() {
-        return this.getTransactionsOut().filter(t => t.message && t.message.type === this.types.payPromo)
-    };
-
-    async payPromo(txData) {
-        const codesSent = this.getValidCodes();
-        if (codesSent.indexOf(txData.message) === -1) return;
-        const amount = this.getPrice() * this.config.percent;
-        const message = JSON.stringify({type: this.types.payPromo, payedFor: txData.hash, code: txData.message});
-        console.log('PAY:', txData.from, amount, message);
-        await this.send(txData.from, amount, message);
-    }
-
-    generateCode() {
-        return this.codePrepend + new Date().valueOf();
-    }
-
-    async getTransaction(tx) {
-        return await this.explorer('/transactions', `/${tx}`)
-    };
-
-    async sendCode(address) {
-        return await this.send(address, 0, this.generateCode())
-    };
-
-    async send(address, amount, message) {
         const txParams = new minterCore.SendTxParams({
-            privateKey: process.env[network.test ? 'PRIVATE_KEY_TEST' : 'PRIVATE_KEY_MAIN'],
-            chainId: 1,
+            privateKey: process.env[`PK_${game}_${this.config.net}`],
+            chainId: this.network.chainId,
             address,
             amount,
-            coinSymbol: network.symbol,
+            coinSymbol: this.network.symbol,
             gasPrice: 1,
-            message,
+            message: typeof message === "string" ? message : JSON.stringify(message),
         });
-        console.log('TxParams', txParams)
+        //console.log('TxParams', txParams)
         try {
             return await minterSDK.postTx(txParams)
         } catch (error) {
             //const errorMessage = error.response.data ? error.response.data.error : error;
-            console.error(error.response);
+            console.error('ERROR', error);
         }
+    };
+
+    async getTransaction(tx) {
+        return await this.explorer(`/transactions/${tx}`)
     };
 
 
     async explorer(action) {
         try {
-            const res = await axios(`${network.explorerUrl}${action}`)
+            const res = await axios(`${this.network.explorerUrl}${action}`)
             return res.data.data
         } catch (e) {
             return console.error(e.response.status, e.response.config.url)

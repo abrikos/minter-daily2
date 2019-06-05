@@ -35,6 +35,7 @@ class TopMenu extends React.Component {
     render() {
         const menuItems = [
             {path: '/', label: t('Home'), show: true},
+            {path: '/members', label: t('Members'), show: true},
             {path: '/winners', label: t('Winners'), show: true},
             {path: '/promos', label: t('Valid promo-codes'), show: true},
         ];

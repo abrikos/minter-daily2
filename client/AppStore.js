@@ -1,16 +1,26 @@
 import {action, observable} from "mobx";
 import config from './lib/config'
-import Minter from "./lib/MinterCore";
+import Lottery from "./lib/Lottery";
+import {observer} from "mobx-react";
 
 
 class AppStore {
-    @observable alert = {isOpen: false};
-    @observable config = config;
-    @observable Minter = Minter;
+    alert = {isOpen: false};
+    config = Lottery.config;
+    address = Lottery.address;
+    balance = 0;
+    Lottery = Lottery;
 
 
-    @action init = async () => {
-        await this.Minter.loadTtransactions();
+    init = async () => {
+        //await this.Minter.loadTtransactions(this.address);
+        await this.Lottery.init();
+        this.balance = this.Lottery.getPrize().toFixed(2);
+        /*setInterval(async ()=>{
+            //await this.Lottery.init();
+            this.balance = this.Lottery.getPrize().toFixed(2);
+        }, 1000)*/
+
         console.log('Store init');
 
     };

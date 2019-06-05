@@ -15,7 +15,11 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.history = props.history || createHistory(this.props);
-
+        this.history.listen((location, action) => {
+            // location is an object like window.location
+            props.store.init();
+            console.log(action, location.pathname, location.state)
+        });
     }
 
 

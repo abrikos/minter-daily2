@@ -1,8 +1,9 @@
 require = require("esm")(module)
-const fs = require('fs');
-//const App = require('./minter-app');
-const m  = require( '../client/lib/MinterCore');
-const App = m.default
+//const Minter = require('./minter-app');
+//const m  = require( '../client/lib/MinterCore');
+//const Minter = m.default
+const l  = require( '../client/lib/Lottery');
+const Lottery = l.default
 const argv = require('minimist')(process.argv.slice(2));
 const moment = require('moment');
 
@@ -10,64 +11,22 @@ console.log('====================================== ',moment().format('YYYY-MM-D
 init(argv);
 
 async function init(argv) {
-    await App.loadTtransactions();
+    await Lottery.init();
     if (argv.day) {
-        dailyWinner();
+        Lottery.dailyWinner();
     } else if (argv.minute) {
-        sendPromoCode();
+        Lottery.sendPromoCode();
 
     } else if (argv.minute5) {
-        payForPromo();
+        Lottery.payForPromo();
 
     } else if (argv.hour) {
 
+    } else if (argv.test) {
+        Lottery.test();
     }
 
 }
 
 
-function dailyWinner() {
-    const validPromos = App.getValidCodes();
-    const dayTxsIn = App.getTransactionsIn().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
-    const dayTxsOut = App.getTransactionsPayPromo().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
-    if (!dayTxsIn.length) return;
-
-    const players = []
-    for (const tx of dayTxsIn) {
-        if (validPromos.indexOf(tx.message) !== -1) {
-            for (let i = 0; i < App.config.promoUp; i++) {
-                players.push(tx)
-            }
-        } else {
-            players.push(tx)
-        }
-    }
-    const prize = App.getPrize();
-    if (prize <= 0) return ;
-    const winner = players[Math.floor(Math.random() * players.length)];
-    console.log(winner, prize)
-    App.sendToWinner(winner, prize);
-}
-
-
-async function sendPromoCode(txList) {
-    const inputTxs = App.getTransactionsIn(txList);
-    const codesSent = App.getTransactionsSentCodes(txList);
-
-    const noCodesSent = inputTxs.filter(tx => codesSent.map(t => t.to).indexOf(tx.from) === -1);
-    for (const txData of noCodesSent) {
-        await App.sendCode(txData.from).catch(console.error)
-    }
-};
-
-async function payForPromo(txList) {
-    // All transactions except from main address, No code and Less than price
-    const payedPromo = App.getTransactionsPayPromo();
-    for (const txData of App.getTransactionsWithValidPromo(txList)) {
-        //get parent address from Message
-        if (payedPromo.map(tx => tx.hash).indexOf(txData.hash) === -1 && txData.value >= App.getPrice()) {
-            await App.payPromo(txData);
-        }
-    }
-}
 

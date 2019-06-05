@@ -1,25 +1,26 @@
 import React, {Component} from 'react';
-import {inject} from 'mobx-react';
-import {createBrowserHistory as createHistory} from 'history';
+import {inject, observer} from 'mobx-react';
 import Routes from './Routes';
 import TopMenu from "./TopMenu";
 import {Alert, Card, CardBody, CardSubtitle, CardText, CardTitle} from "reactstrap";
 import './css/App.css';
 import './css/minter.css';
+import {observable} from "mobx";
 
 
 @inject('store')
 class Layout extends Component {
-
+    @observable balance;
     constructor(props) {
         super(props);
         this.store = props.store;
         this.register = !!props.register || false;
-        this.history = props.history || createHistory(this.props);
-        this.balance = props.store.Minter.getPrize().toFixed(2);
-        this.players = props.store.Minter.getDailyTransactions().length;
 
+
+        this.players = props.store.Lottery.getPlayersCount();
+        this.balance = props.store.balance;
     }
+
 
 
     onDismiss = () => {
@@ -34,7 +35,8 @@ class Layout extends Component {
             <div>
                 <TopMenu/>
                 <Alert toggle={this.onDismiss} {...alertProps}/>
-                <div className={'container'}>
+                <div className={'container-fluid py-2'}>
+                    {/*{this.props.store.Lottery.counter}*/}
                     <div className={'row'}>
                         <div className={'col-md-8'}>
                             <Routes store={this.store} {...props}/>

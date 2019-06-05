@@ -1,9 +1,10 @@
 import React from 'react';
 import { withRouter, Route,  Switch } from 'react-router-dom';
 import {inject, observer} from 'mobx-react';
-import Home from './pages/home';
-import Promos from "./pages/Promos";
-import Winners from "./pages/Winners";
+import PageHome from './pages/page-home';
+import PagePromos from "./pages/page-Promos";
+import PageWinners from "./pages/page-Winners";
+import PageMembers from "./pages/page-Members";
 
 @inject('store') @withRouter @observer
 class Routes extends React.Component {
@@ -18,10 +19,11 @@ class Routes extends React.Component {
     render() {
         return <>
             <Switch>
-                <Route exact path='/' component={Home}/>
-                <Route path='/promo/:code' component={Home}/>
-                <Route path='/promos' component={Promos}/>
-                <Route path='/winners' component={Winners}/>
+                <Route exact path='/' component={PageHome}/>
+                <Route path='/promo/:code' component={PageHome}/>
+                <Route path='/promos' component={PagePromos}/>
+                <Route path='/winners' component={PageWinners}/>
+                <Route path='/members' component={PageMembers}/>
             </Switch>
         </>;
     };
