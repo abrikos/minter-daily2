@@ -1,7 +1,4 @@
-import {action, observable} from "mobx";
-import config from './lib/config'
 import Lottery from "./lib/Lottery";
-import {observer} from "mobx-react";
 
 
 class AppStore {

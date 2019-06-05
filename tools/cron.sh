@@ -17,9 +17,9 @@ node server/cron.js --day>>log/day.log.txt
 
 "hour" )
 node server/cron.js --hour>>log/hour.log.txt
-git pull >log/pull.log
-rm package-lock.json
-npm i
-npm run build > log/build.log
+#git pull >log/pull.log
+#rm package-lock.json
+#npm i
+#npm run build > log/build.log
 ;;
 esac

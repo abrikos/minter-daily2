@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {inject, observer} from 'mobx-react';
+import {inject} from 'mobx-react';
 import Routes from './Routes';
 import TopMenu from "./TopMenu";
 import {Alert, Card, CardBody, CardSubtitle, CardText, CardTitle} from "reactstrap";

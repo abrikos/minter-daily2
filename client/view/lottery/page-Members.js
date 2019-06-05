@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {inject} from "mobx-react";
-import {observable} from "mobx";
 import {t} from '../../Translator'
 
 
