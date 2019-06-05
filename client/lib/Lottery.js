@@ -95,8 +95,11 @@ class Lottery {
         //const dayTxsOut = Minter.getTransactionsPayPromo().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
         if (!Minter.transactionsIn.length) return [];
         const players = [];
+        const price = this.getPrice();
         for (const tx of Minter.transactionsIn) {
-            tx.promoChance = validPromos.indexOf(tx.message) !== -1 ? this.config.promoChance : 1;
+            const promo = validPromos.indexOf(tx.message) !== -1 ? this.config.promoChance : 0;
+
+            tx.promoChance = promo + Math.ceil(tx.value/price)
             players.push(tx)
         }
         return players;

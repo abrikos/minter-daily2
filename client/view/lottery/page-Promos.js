@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react";
 import {withRouter} from "react-router";
 import {action, observable} from "mobx";
 import {Link} from "react-router-dom";
-import {t} from "../Translator";
+import {t} from "client/Translator";
 
 
 @withRouter @inject('store') @observer

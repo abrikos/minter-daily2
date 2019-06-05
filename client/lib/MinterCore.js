@@ -30,28 +30,33 @@ class Minter {
             return tx;
         }).filter(tx => tx.message !== 'this is a gift');
         const dayMarks = this.transactions.filter(tx => tx.message && tx.message.type === this.WinnerType);
+        console.log(dayMarks.map(t=>t.txn))
         let lastDate;
+
         for (const tx of dayMarks) {
-            const time = moment(tx.timestamp).unix();
+            const time = tx.txn;
             if (!lastDate) {
                 lastDate = time;
                 continue;
             }
-            if (lastDate > time) lastDate = time;
+            if (lastDate < time) {
+
+                lastDate = time;
+            }
         }
 
 
-        this.transactionsDay = lastDate ? this.transactions.filter(t => moment(t.timestamp).unix() > lastDate) : this.transactions;
+        this.transactionsDay = lastDate ? this.transactions.filter(t => t.txn > lastDate) : this.transactions;
         this.transactionsIn = this.transactionsDay.filter(t => t.from !== address);
         this.transactionsOut = this.transactionsDay.filter(t => t.from === address);
-        this.transactionsWinners = this.transactions.filter(t => t.from === address && t.message && t.message.type===this.WinnerType);
+        this.transactionsWinners = this.transactions.filter(t => t.from === address && t.message && t.message.type === this.WinnerType);
     }
 
     async sendToWinner(game, winner, amount) {
-        await this.send(game, winner.from, amount, {message:this.config.games[game].name+": You Win!",type:this.WinnerType, hash:winner.hash});
+        await this.send(game, winner.from, amount, {message: this.config.games[game].name + ": You Win!", type: this.WinnerType, hash: winner.hash});
     }
 
-    async getLastBlock(){
+    async getLastBlock() {
         return await this.explorer('/blocks');
     }
 

@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
-import {withRouter} from "react-router";
 import {action, observable} from "mobx";
-import {t} from '../Translator'
 import {Input, InputGroup, InputGroupAddon} from "reactstrap";
 
 
@@ -76,7 +74,8 @@ class PageHome extends Component {
                     говоря <strong className={'big2'}>Ежедневно</strong> будет формироваться и отправляться <strong
                     className={'big2'}>приз</strong> одному из случайных счастливчиков прожитого дня, кто решился отдать
                     себя в руки Фортуны.
-                    А стать баловнем ежедневной судьбы Вам помогут промо-коды, и это тоже хорошая вещь, о которой подробнее <a
+                    А стать баловнем ежедневной судьбы и получить <strong
+                    className={'big2'}>{data.percentDaily * 100}% дневного банка</strong>Вам помогут промо-коды, и это тоже хорошая вещь, о которой подробнее <a
                     href="#rules">ниже</a>.
                 </li>
             </ul>
@@ -84,16 +83,31 @@ class PageHome extends Component {
 
             <a name={'rules'}/>
             <h4>Все что находится <span className={'red'}>ниже</span> можно называть "Правила и условия лотерии"</h4>
-            <ul>
-                <li>
-                    <h3>Партнерская программа <span className={'big2'}>{data.percent * 100}%</span></h3>
-                    Начнем с самого хорошего: С каждой ставки сделанной с Вашим промо-кодом Вы получаете <span
-                    className={'big2'}>{data.percent * 100}%</span> от суммы ставки.
+            <ul className={'big-line-spacing'}>
+                <li>Цена ставки (назовем ее <span className={'red'}>"биплет"</span>:) - <span
+                    className={'big2'}>{data.price}</span> BIP
+                </li>
+                <li className={'text-info'}>Транзакция суммой менее <strong className={'red'}>{data.price}</strong> BIP
+                    считается подарком
                 </li>
 
                 <li>
-                    Ставки в которых был использован валидный <span className={'big2'}>промо-код</span> увеличивают свой шанс получить ежедневный приз  попадая в лист
-                    выбора победителя  <span className={'big2'}>{data.promoChance} раза</span>. Из этого листа выбирается 1 случайная ставка и на адрес откуда она пришла отправляется ежедневный приз.
+                    <h3>Партнерская программа <span className={'big2'}>{data.percent * 100}%</span></h3>
+                    С каждого <span className={'red'}>биплета</span> купленного с Вашим промо-кодом Вы получаете <span
+                    className={'big2'}>{data.percent * 100}%</span> от уплаченной за него суммы.
+                </li>
+
+                <li>
+                    <span className={'red'}>Биплет</span> купленный по цене более номинала увеличивает шансы на выигрыш.
+                </li>
+                <li>
+                    Розыгрыш приза происходит так:
+                        <ul>
+                            <li>выбираются все валидные транзакции за день и добавляются в список выбора победителя.</li>
+                            <li>Транзакции с суммой более цены <span className={'red'}>биплета</span> попадают в литст еще столько раз во сколько их сумма больше номинала</li>
+                            <li>Транзакции с промокодами добавляются еще {data.promoChance} раза</li>
+                            <li>Из получившегося списка выбирается 1 случайная транзакция и на адрес откуда она пришла отправляется ежедневный приз.</li>
+                        </ul>
                 </li>
 
                 <li>
@@ -102,12 +116,6 @@ class PageHome extends Component {
                     минус отчисления за ставки по промо-кодам.
                 </li>
 
-                <li>Цена ставки (назовем ее  <span className={'red'}>"биплет"</span>:) - <span
-                    className={'big2'}>{data.price}</span> BIP
-                </li>
-                <li className={'text-info'}>Транзакция суммой менее <strong className={'red'}>{data.price}</strong> BIP
-                    считается подарком
-                </li>
                 <li>После того как Вы купили <span className={'red'}>биплет</span> на адрес вашего кошелька придет <strong>транзакция 0 BIP</strong> с
                     Вашим промо-кдом в поле <strong>"Message"</strong>
                 </li>
@@ -115,7 +123,7 @@ class PageHome extends Component {
                 <li>Приглашайте новых участников с помощью Вашего промо-кода и Вы будете получать {data.percent * 100}%
                     с
                     каждого купленного <span className={'red'}>биплета</span> (если в поле <strong>"Message"</strong> указан Ваш промо-код).
-                    Партнерские вознаграждения отправляются на тот же                    адрес куда лотерея отправила промо-код.
+                    Партнерские вознаграждения отправляются на тот же адрес куда лотерея отправила промо-код.
                 </li>
 
                 {this.parentCode &&

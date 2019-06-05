@@ -1,7 +1,7 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
 import {observable} from "mobx";
-import {Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem,} from "reactstrap";
+import {Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, UncontrolledDropdown,} from "reactstrap";
 import {Link, withRouter} from "react-router-dom";
 import {t} from "./Translator";
 import logo from './logo.svg'
@@ -23,7 +23,6 @@ class TopMenu extends React.Component {
     }
 
     navItem = (item) => {
-
         //const active =  !!this.props.location.pathname.match(item.path);
         const active = this.props.location.pathname === item.path;
         return item.show &&
@@ -32,21 +31,39 @@ class TopMenu extends React.Component {
             </NavItem>
     };
 
+    dropDownItem = (item) => {
+        //const active =  !!this.props.location.pathname.match(item.path);
+        const active = this.props.location.pathname === item.path;
+        return  <DropdownItem key={'nav-' + item.path} active={active} onClick={e=>this.props.history.push(item.path)}>
+                {item.label}
+            </DropdownItem>
+    };
+
     render() {
         const menuItems = [
             {path: '/', label: t('Home'), show: true},
-            {path: '/members', label: t('Members'), show: true},
-            {path: '/winners', label: t('Winners'), show: true},
-            {path: '/promos', label: t('Valid promo-codes'), show: true},
+        ];
+        const lotteryItems = [
+            {path: '/lottery/members', label: t('Members'), show: true},
+            {path: '/lottery/winners', label: t('Winners'), show: true},
+            {path: '/lottery/promos', label: t('Valid promo-codes'), show: true},
         ];
         return (
             <Navbar color="dark" dark expand="md">
                 <NavbarBrand href='javascript:void(0)' onClick={e => this.props.history.push('/')} className='mr-auto'><img src={logo} alt={'logo'}/> {t('projectName')}</NavbarBrand>
-                <NavbarToggler onClick={e=>this.menuPulled = !this.menuPulled} navbar/>
+                <NavbarToggler onClick={e=>this.menuPulled = !this.menuPulled} />
                 <Collapse isOpen={this.menuPulled} navbar>
                     <Nav className="ml-auto" navbar>
+                        <UncontrolledDropdown nav inNavbar>
+                            <DropdownToggle nav caret>
+                                {t('Lottery')}
+                            </DropdownToggle>
+                            <DropdownMenu>{lotteryItems.map(this.dropDownItem)}</DropdownMenu>
+                        </UncontrolledDropdown>
                         {menuItems.map(this.navItem)}
-                        {/*<UncontrolledDropdown nav inNavbar>
+
+{/*
+                        <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
                                 {t('Language')}
                             </DropdownToggle>
@@ -59,7 +76,8 @@ class TopMenu extends React.Component {
                                 </DropdownItem>
 
                             </DropdownMenu>
-                        </UncontrolledDropdown>*/}
+                        </UncontrolledDropdown>
+*/}
                     </Nav>
                 </Collapse>
             </Navbar>

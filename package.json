@@ -120,7 +120,7 @@
     "workbox-webpack-plugin": "3.6.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "NODE_PATH=. node scripts/start.js",
     "admin": "node scripts/start-admin.js",
     "server": "node server/server.js",
     "build": "node scripts/build.js",

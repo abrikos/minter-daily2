@@ -1,5 +1,10 @@
 @media (max-width: 770px) {
-  font-size: 0.8em !important; }
+  .wallet-address {
+    font-size: 0.8em !important; } }
+@media (min-width: 770px) {
+  .wallet-address {
+    font-size: 1.6em !important; } }
+
 .red {
   color: #d15c22; }
 
