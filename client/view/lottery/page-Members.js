@@ -24,7 +24,7 @@ class PageMembers extends Component {
             <tbody>
             <tr><th>{t('Members')}</th><th>{t('Chance')}*</th><th>{t('Date')}</th></tr>
             {this.items.map((p,i)=><tr key={i}>
-                <td><a href={`https://explorer.minter.network/address/${p.from}`} target={'_blank'} className={'red big2'}>{p.from}</a></td>
+                <td><a href={`https://explorer.minter.network/address/${p.from}`} target={'_blank'} className={'red big2'}>{p.from.substr(0,10)}...</a></td>
                 <td title={'Количество попаданий в таблицу выбора победителя'}>{p.promoChance}</td>
                 <td>{p.timestamp}</td>
             </tr>)}
