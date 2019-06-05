@@ -6,11 +6,12 @@ import {Alert, Card, CardBody, CardSubtitle, CardText, CardTitle} from "reactstr
 import './css/App.css';
 import './css/minter.css';
 import {observable} from "mobx";
-
+import {t} from './Translator'
 
 @inject('store')
 class Layout extends Component {
     @observable balance;
+
     constructor(props) {
         super(props);
         this.store = props.store;
@@ -20,7 +21,6 @@ class Layout extends Component {
         this.players = props.store.Lottery.getPlayersCount();
         this.balance = props.store.balance;
     }
-
 
 
     onDismiss = () => {
@@ -46,9 +46,9 @@ class Layout extends Component {
 
                             <Card>
                                 <CardBody>
-                                    <CardTitle>Приз на {new Date().toLocaleDateString()}</CardTitle>
-                                    <CardSubtitle><span
-                                        className={'big5'}>{this.balance}</span> BIP</CardSubtitle>
+                                    <CardTitle>{t('Lottery')} </CardTitle>
+                                    <CardSubtitle>Приз на {new Date().toLocaleDateString()}: </CardSubtitle>
+                                    <strong className={'big5'}>{this.balance}</strong> BIP
                                     <CardText>Участников: {this.players}</CardText>
                                 </CardBody>
                             </Card>
