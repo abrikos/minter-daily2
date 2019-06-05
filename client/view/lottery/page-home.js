@@ -31,6 +31,8 @@ class PageHome extends Component {
                         className={'wallet-address'}><a
                         href={`https://explorer.minter.network/address/${this.address}`}
                         className={'red'}>{this.address}</a></strong>
+                    {this.parentCode &&
+                    <li>И в поле <strong>"Message"</strong> укажите мой промокод: <strong className={'big2 red'}>{this.parentCode}</strong></li>}
                 </li>
                 <li>
                     Вы таки зададите мне вопрос: <strong className={'big2'}>"Зачем?"</strong>
@@ -126,8 +128,7 @@ class PageHome extends Component {
                     Партнерские вознаграждения отправляются на тот же адрес куда лотерея отправила промо-код.
                 </li>
 
-                {this.parentCode &&
-                <li>Используйте мой промокод: <strong className={'big2 red'}>{this.parentCode}</strong></li>}
+
 
 
                 <li>Вы можете скопировать эту информацию и вставить свой промо-код</li>

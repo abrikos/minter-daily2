@@ -1,1 +1,71 @@
-<svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><circle fill="#d15c22" cx="18" cy="18" r="18"/><path d="M17.9 16.73l2.1-2.05a1.44 1.44 0 0 1 2 0c.54.53.54 1.4 0 1.93l-3 2.91a1.44 1.44 0 0 1-2.1.11l-7.3-7.08a1.33 1.33 0 0 1 0-1.93 1.44 1.44 0 0 1 1.99 0l6.3 6.11zm-7.3-.99c.77 0 1.4.7 1.4 1.55v8.9c0 .86-.63 1.56-1.4 1.56-.79 0-1.42-.7-1.42-1.55v-8.9c0-.87.63-1.56 1.41-1.56zm14.81-5.52c.78 0 1.41.67 1.41 1.5v14.54c0 .82-.63 1.49-1.4 1.49-.78 0-1.41-.67-1.41-1.49V11.71c0-.82.63-1.49 1.4-1.49z" fill="#FFF"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="36"
+   height="36"
+   viewBox="0 0 36 36"
+   version="1.1"
+   id="svg3767"
+   sodipodi:docname="logo.svg"
+   inkscape:version="0.92.4 (33fec40, 2019-01-16)">
+  <metadata
+     id="metadata3773">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3771" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1850"
+     inkscape:window-height="1016"
+     id="namedview3769"
+     showgrid="false"
+     inkscape:zoom="5.5833333"
+     inkscape:cx="-4.5788462"
+     inkscape:cy="16.780649"
+     inkscape:window-x="70"
+     inkscape:window-y="1051"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3767" />
+  <circle
+     fill="#d15c22"
+     cx="18"
+     cy="18"
+     r="18"
+     id="circle3763" />
+  <path
+     d="M17.9 16.73l2.1-2.05a1.44 1.44 0 0 1 2 0c.54.53.54 1.4 0 1.93l-3 2.91a1.44 1.44 0 0 1-2.1.11l-7.3-7.08a1.33 1.33 0 0 1 0-1.93 1.44 1.44 0 0 1 1.99 0l6.3 6.11zm-7.3-.99c.77 0 1.4.7 1.4 1.55v8.9c0 .86-.63 1.56-1.4 1.56-.79 0-1.42-.7-1.42-1.55v-8.9c0-.87.63-1.56 1.41-1.56zm14.81-5.52c.78 0 1.41.67 1.41 1.5v14.54c0 .82-.63 1.49-1.4 1.49-.78 0-1.41-.67-1.41-1.49V11.71c0-.82.63-1.49 1.4-1.49z"
+     id="path3765"
+     fill="#FFF" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:10.23780727px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25594518"
+     x="14.105209"
+     y="30.895523"
+     id="text3777"><tspan
+       sodipodi:role="line"
+       id="tspan3775"
+       x="14.105209"
+       y="30.895523"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Dingbats;-inkscape-font-specification:'Dingbats Bold';stroke-width:0.25594518">D</tspan></text>
+</svg>
