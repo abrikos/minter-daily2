@@ -46,7 +46,7 @@ class TopMenu extends React.Component {
         const lotteryItems = [
             {path: '/lottery/members', label: t('Members'), show: true},
             {path: '/lottery/winners', label: t('Winners'), show: true},
-            {path: '/lottery/promos', label: t('Valid promo-codes'), show: true},
+            {path: '/lottery/codes', label: t('Valid promo-codes'), show: true},
         ];
         return (
             <Navbar color="dark" dark expand="md">

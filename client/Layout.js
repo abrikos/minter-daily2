@@ -34,7 +34,7 @@ class Layout extends Component {
         return (
             <div>
                 <TopMenu/>
-                <Alert toggle={this.onDismiss} {...alertProps}/>
+                {/*<Alert toggle={this.onDismiss} {...alertProps}/>*/}
                 <div className={'container-fluid py-2'}>
                     {/*{this.props.store.Lottery.counter}*/}
                     <div className={'row'}>

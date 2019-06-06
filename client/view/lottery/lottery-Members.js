@@ -4,7 +4,7 @@ import {t} from '../../Translator'
 
 
 @inject('store')
-class PageMembers extends Component {
+class LotteryMembers extends Component {
     //@observable items = [];
 
     constructor(props) {
@@ -34,4 +34,4 @@ class PageMembers extends Component {
     }
 }
 
-export default PageMembers;
+export default LotteryMembers;

@@ -7,7 +7,7 @@ import {t} from "../../Translator";
 
 
 @withRouter @inject('store') @observer
-class PagePromos extends Component {
+class LotteryCodes extends Component {
     @observable promos = [];
 
 
@@ -30,4 +30,4 @@ class PagePromos extends Component {
     }
 }
 
-export default PagePromos;
+export default LotteryCodes;
