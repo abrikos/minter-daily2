@@ -53,7 +53,7 @@ class LotteryPromo extends Component {
                                onChange={this.changePromo}/>
                     </InputGroup>
 
-                    Ваша ссылка: <pre> {this.code ? `${this.url.origin}/promo/${this.code}` : 'Введите код'}</pre>
+                    Ваша ссылка: <pre> {this.code ? `${this.url.origin}/lottery/promo/${this.code}` : 'Введите код'}</pre>
 
 
                 </li>

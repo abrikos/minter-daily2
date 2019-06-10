@@ -1,4 +1,5 @@
 import Lottery from "./lib/Lottery";
+import url from 'url';
 
 
 class AppStore {
@@ -10,6 +11,9 @@ class AppStore {
 
 
     init = async () => {
+
+        const urlS = new URL(window.location.href)
+        const params = url.parse(window.location.href)
         //await this.Minter.loadTtransactions(this.address);
         await this.Lottery.init();
         this.balance = this.Lottery.getPrize().toFixed(2);

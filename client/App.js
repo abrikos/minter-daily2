@@ -5,7 +5,7 @@ import Context from './context';
 import {createBrowserHistory as createHistory} from 'history';
 import './css/App.css';
 import './css/minter.css';
-import Layout from "./Layout";
+import Layout from "client/Layout";
 
 
 @observer
@@ -15,6 +15,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.history = props.history || createHistory(this.props);
+        console.log(this.props.match)
         this.history.listen((location, action) => {
             // location is an object like window.location
             props.store.init();

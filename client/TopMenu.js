@@ -44,9 +44,14 @@ class TopMenu extends React.Component {
             {path: '/', label: t('Home'), show: true},
         ];
         const lotteryItems = [
+            {path: '/lottery', label: t('Intro'), show: true},
             {path: '/lottery/members', label: t('Members'), show: true},
             {path: '/lottery/winners', label: t('Winners'), show: true},
             {path: '/lottery/codes', label: t('Valid promo-codes'), show: true},
+        ];
+        const pbetItems = [
+            {path: '/price-bet', label: t('Intro'), show: true},
+            {path: '/price-bet/create', label: t('Create bet'), show: true},
         ];
         return (
             <Navbar color="dark" dark expand="md">
@@ -54,6 +59,12 @@ class TopMenu extends React.Component {
                 <NavbarToggler onClick={e=>this.menuPulled = !this.menuPulled} />
                 <Collapse isOpen={this.menuPulled} navbar>
                     <Nav className="ml-auto" navbar>
+                        <UncontrolledDropdown nav inNavbar>
+                            <DropdownToggle nav caret>
+                                {t('Price bet')}
+                            </DropdownToggle>
+                            <DropdownMenu>{pbetItems.map(this.dropDownItem)}</DropdownMenu>
+                        </UncontrolledDropdown>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
                                 {t('Lottery')}

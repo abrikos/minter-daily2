@@ -11,20 +11,20 @@ class LotteryHome extends Component {
 
     constructor(props) {
         super(props)
-
+        this.data = this.props.store.config;
+        this.data.address = this.props.store.Lottery.address;
+        this.data.parentCode = this.props.match.params.code
     }
 
 
     render() {
-        const data = this.props.store.config;
-        data.address = this.props.store.Lottery.address;
-        data.parentCode = this.props.match.params.code
+
         return <div>
 
 
             <ul className={'big-line-spacing'}>
                 <li>
-                    <h1>Отправьте <strong className={'big2'}>{data.price}</strong> BIP на адрес:</h1>
+                    <h1>Отправьте <strong className={'big2'}>{this.data.price}</strong> BIP на адрес:</h1>
                     <strong
                         className={'wallet-address'}><a
                         href={`https://explorer.minter.network/address/${this.data.address}`}
@@ -75,7 +75,7 @@ class LotteryHome extends Component {
                     className={'big2'}>приз</strong> одному из случайных счастливчиков прожитого дня, кто решился отдать
                     себя в руки Фортуны.
                     А стать баловнем ежедневной судьбы и получить <strong
-                    className={'big2'}>{data.percentDaily * 100}% дневного банка</strong>Вам помогут промо-коды, и это тоже хорошая вещь, о которой подробнее <a
+                    className={'big2'}>{this.data.percentDaily * 100}% дневного банка</strong>Вам помогут промо-коды, и это тоже хорошая вещь, о которой подробнее <a
                     href="#rules">ниже</a>.
                 </li>
             </ul>
@@ -84,7 +84,7 @@ class LotteryHome extends Component {
             <a name={'rules'}>
             <h4>Все что находится <span className={'red'}>ниже</span> можно называть "Правила и условия лотерии"</h4>
             </a>
-            <LotteryRules data={data}/>
+            <LotteryRules data={this.data}/>
 
         </div>
     }
