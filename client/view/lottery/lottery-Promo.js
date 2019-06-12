@@ -57,9 +57,9 @@ class LotteryPromo extends Component {
             </ul>
 
 
-            <a name={'rules'}>
-                <h4>Более подробнее об условиях:</h4>
-            </a>
+
+            <h4>Более подробнее об условиях:</h4>
+
             <LotteryRules data={data}/>
         </div>
     }
