@@ -1,15 +1,22 @@
 import React, {Component} from "react";
-import {Input, InputGroup} from "reactstrap";
-import LotteryRules from "./lang/lottery-rules-ru";
+import {Input, InputGroup, InputGroupAddon, InputGroupText} from "reactstrap";
 import {inject, observer} from "mobx-react";
 import {action, observable} from "mobx";
+import lotteryRulesRu from "./lang/lottery-rules-ru";
+import lotteryRulesEn from "./lang/lottery-rules-en";
 import LotteryLayout from "./lottery-Layout";
+import lotteryContentEn from "./lang/lottery-rules-en"
+import lotteryContentRu from "./lang/lottery-rules-ru"
+
+import {t} from "client/Translator";
+import lotteryHomeRu from "./lang/lottery-home-ru";
 
 @inject('store') @observer
 class LotteryPromo extends Component {
     @observable code = '';
 
     @action changePromo = e => {
+        console.log(e)
         this.code = e.target.value;
     };
 
@@ -18,48 +25,20 @@ class LotteryPromo extends Component {
     render() {
         const data = this.props.store.Lottery.config;
         const page = <div>
-            <h1>Ежедневная лотерея!</h1>
-            <ul className={'big-line-spacing'}>
+            {this.props.language==='ru' && lotteryContentRu(this.props.store.Lottery.config)}
+            {this.props.language==='en' && lotteryContentEn(this.props.store.Lottery.config)}
+            {this.props.language==='ru' && lotteryRulesRu(this.props.store.Lottery.config)}
+            {this.props.language==='en' && lotteryRulesEn(this.props.store.Lottery.config)}
+            <InputGroup className = "mb-3">
 
-                <li>Для участия отправьте <strong className={'big2'}>{data.price}</strong>BIP на адрес <strong
-                    className={'wallet-address'}><a
-                    href={`https://explorer.minter.network/address/${data.address}`}
-                    className={'red'}>{data.address}</a></strong>
-                </li>
-                <li>Используйте мой промо-код и увеличте
-                    шансы на выигрыш в <strong className={'big2'}>{data.promoChance}</strong> раза <pre
-                        className={'wallet-address red'}>{data.parentCode}</pre></li>
-                <li>С каждого купленного по этому промо-коду биплета я получу <strong
-                    className={'big2'}>{data.percent * 100}%</strong> его стоимости
-                </li>
-                <li>После покупки биплета на Ваш кошелек придет транакция 0 BIP с адреса <strong
-                    className={'wallet-address'}><a
-                    href={`https://explorer.minter.network/address/${data.address}`}
-                    className={'red'}>{this.address}</a></strong> где в поле "Message" будет Ваш личный промо-код
-                </li>
-                <li>Вы можете скопировать эту информацию и вставить свой промо-код</li>
-                <li>Введите свой промо-код для получения ссылки
+                <InputGroupAddon addonType="prepend">
+                    <InputGroupText>{t("Your promo code")}</InputGroupText>
+                </InputGroupAddon>
+                <Input onChange = {this.changePromo} />
+            </InputGroup>
 
-                    <InputGroup className="mb-3">
-                        {/*<InputGroupAddon addonType="prepend">{this.url.origin + '/'}</InputGroupAddon>*/}
-                        <Input placeholder="Ваш промо-код"
-                               aria-label="Ваш промо-код"
-                               aria-describedby="basic-addon2"
-                               onChange={this.changePromo}/>
-                    </InputGroup>
+            {t("Your link")}: <pre> {this.code? `${this.url.origin}/lottery/promo/${this.code}`: t("Enter the code")} </ pre>
 
-                    Ваша ссылка: <pre> {this.code ? `${this.url.origin}/lottery/promo/${this.code}` : 'Введите код'}</pre>
-
-
-                </li>
-
-            </ul>
-
-
-
-            <h4>Более подробнее об условиях:</h4>
-
-            <LotteryRules data={data}/>
         </div>;
         return <LotteryLayout view={page}/>
     }

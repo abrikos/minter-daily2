@@ -10,7 +10,7 @@ class PriceBetTransactions {
     }
 
     async init() {
-        await MinterTransactions.loadTtransactions(this.address);
+        this.tranasctions = await MinterTransactions.loadTtransactions(this.address);
     }
 
     async cryptocompare(action, from, to, time, limit) {

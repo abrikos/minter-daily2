@@ -6,13 +6,12 @@ import {createBrowserHistory as createHistory} from 'history';
 import './css/App.css';
 import './css/minter.css';
 import Layout from "client/Layout";
-
+import i18n from 'i18next';
 
 class App extends Component {
 
     constructor(props) {
         super(props);
-
         this.history = props.history || createHistory(this.props);
         this.history.listen((location, action) => {
             // location is an object like window.location
@@ -21,10 +20,9 @@ class App extends Component {
         });
     }
 
-    state = {language:'ru'};
-    changeLanguage = lng=>{
-        console.log(lng)
-        this.setState({language:lng})
+    state = {language: i18n.language};
+    changeLanguage = lng => {
+        this.setState({language: lng})
     };
 
 

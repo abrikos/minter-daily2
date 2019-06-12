@@ -9,7 +9,6 @@ import {t} from 'client/Translator'
 class LotteryLayout extends Component {
 
     constructor(props) {
-        console.log('LAYOUT')
         super(props);
         this.store = props.store;
         this.register = !!props.register || false;
@@ -29,10 +28,10 @@ class LotteryLayout extends Component {
                             <Card>
                                 <CardBody>
                                     <CardTitle>{t('Lottery')} </CardTitle>
-                                    <CardSubtitle>Приз на {new Date().toLocaleDateString()}: </CardSubtitle>
+                                    <CardSubtitle>{t('Prize on')} {new Date().toLocaleDateString()}: </CardSubtitle>
                                     <strong className={'big5'}>{this.balance}</strong> {this.props.store.coin}
-                                    <CardText>Участников: {this.players}</CardText>
-                                    <CardText>Минимальная ставка: {this.props.store.Lottery.config.price} {this.props.store.coin} </CardText>
+                                    <CardText>{t('Members count')}: <strong className={'red'}>{this.players}</strong></CardText>
+                                    <CardText>{t('Minimal bet')}: <strong className={'red'}>{this.props.store.Lottery.config.price}</strong> {this.props.store.coin} </CardText>
                                 </CardBody>
                             </Card>
 

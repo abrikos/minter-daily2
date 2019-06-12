@@ -21,7 +21,7 @@ class LotteryCodes extends Component {
             <tbody>
             <tr><th>{t('Code')}</th></tr>
             {this.promos.map((p,i) => <tr key={i}>
-                <td><Link to={`/promo/${p.message}`} className={'red big2'}>{p.message}</Link></td>
+                <td><Link to={`/lottery/promo/${p.message}`} className={'red big2'}>{p.message}</Link></td>
 
         </tr>)}
             </tbody></table>;

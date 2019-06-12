@@ -3,9 +3,9 @@ export default function(config){
             return <div>
                 <ul className={'big-line-spacing'}>
                     <li>Цена ставки (назовем ее <span className={'red'}>"биплет"</span>:) - <span
-                        className={'big2'}>{config.price}</span> BIP
+                        className={'big2'}>{config.price}</span> {config.coin}
                     </li>
-                    <li className={'text-info'}>Транзакция суммой менее <strong className={'red'}>{config.price}</strong> BIP
+                    <li className={'text-info'}>Транзакция суммой менее <strong className={'red'}>{config.price}</strong> {config.coin}
                         считается подарком
                     </li>
 
@@ -34,7 +34,7 @@ export default function(config){
                         минус отчисления за ставки по промо-кодам.
                     </li>
 
-                    <li>После того как Вы купили <span className={'red'}>биплет</span> на адрес вашего кошелька придет <strong>транзакция 0 BIP</strong> с
+                    <li>После того как Вы купили <span className={'red'}>биплет</span> на адрес вашего кошелька придет <strong>транзакция 0 {config.coin}</strong> с
                         Вашим промо-кдом в поле <strong>"Message"</strong>
                     </li>
 

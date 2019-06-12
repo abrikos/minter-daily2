@@ -4,11 +4,34 @@ const MinterTransactions = mt.default;
 
 class LotteryTransactions {
     constructor() {
+        this.WinnerType = "winner";
         this.config = MinterTransactions.config.games.lottery;
+        this.config.coin = MinterTransactions.config[MinterTransactions.config.net].symbol;
     }
 
     async init() {
-        await MinterTransactions.loadTtransactions(this.config.address);
+        const address = this.config.address;
+        this.transactions = await MinterTransactions.loadTtransactions(address);
+        const dayMarks = this.transactions.filter(tx => tx.message && tx.message.type === this.WinnerType);
+        let lastDate;
+
+        for (const tx of dayMarks) {
+            const time = tx.txn;
+            if (!lastDate) {
+                lastDate = time;
+                continue;
+            }
+            if (lastDate < time) {
+
+                lastDate = time;
+            }
+        }
+
+        this.transactionsDay = lastDate ? this.transactions.filter(t => t.txn > lastDate) : this.transactions;
+        this.transactionsIn = this.transactionsDay.filter(t => t.from !== address);
+        this.transactionsOut = this.transactionsDay.filter(t => t.from === address);
+        this.transactionsWinners = this.transactions.filter(t => t.from === address && t.message && t.message.type === this.WinnerType);
+
     }
 
 
@@ -33,10 +56,10 @@ class LotteryTransactions {
         const validPromos = this.getValidCodes();
         //const dayTxsIn = .filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
         //const dayTxsOut = MinterTransactions.getTransactionsPayPromo().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
-        if (!MinterTransactions.transactionsIn.length) return [];
+        if (!this.transactionsIn.length) return [];
         const players = [];
         const price = this.getPrice();
-        for (const tx of MinterTransactions.transactionsIn) {
+        for (const tx of this.transactionsIn) {
             const promo = validPromos.indexOf(tx.message) !== -1 ? this.config.promoChance : 0;
 
             tx.promoChance = promo + Math.ceil(tx.value/price)
@@ -47,11 +70,11 @@ class LotteryTransactions {
     }
 
     getPlayersCount() {
-        return MinterTransactions.transactionsIn.length;
+        return this.transactionsIn.length;
     }
 
     getPrize() {
-        const dayTxsIn = MinterTransactions.transactionsIn;
+        const dayTxsIn = this.transactionsIn;
         const dayTxsOut = this.getTransactionsPayPromo().filter(t => moment(t.timestamp).unix() > moment().subtract(1, 'days').startOf('day').unix());
         let sum = 0;
         for (const tx of dayTxsIn) {
@@ -70,21 +93,21 @@ class LotteryTransactions {
     }
 
     getTransactionsWinner() {
-        return MinterTransactions.transactionsWinners;
+        return this.transactionsWinners;
     }
 
     getTransactionsWithValidPromo() {
         //const txList = await MinterTransactions.getTransactionsList();
         const codesSent = this.getValidCodes();
-        return MinterTransactions.transactionsIn.filter(t => t.message && (typeof t.message === "string") && codesSent.indexOf(t.message) !== -1)
+        return this.transactionsIn.filter(t => t.message && (typeof t.message === "string") && codesSent.indexOf(t.message) !== -1)
     };
 
     getTransactionsSentCodes() {
-        return MinterTransactions.transactions.filter(t => t.from === this.config.address && (typeof t.message === "string") && t.message.indexOf(this.config.codePrepend) !== -1)
+        return this.transactions.filter(t => t.from === this.config.address && (typeof t.message === "string") && t.message.indexOf(this.config.codePrepend) !== -1)
     };
 
     getTransactionsPayPromo() {
-        return MinterTransactions.transactionsOut.filter(t => t.message && t.message.type === this.config.types.payPromo)
+        return this.transactionsOut.filter(t => t.message && t.message.type === this.config.types.payPromo)
     };
 
 
