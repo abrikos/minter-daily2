@@ -1,9 +1,7 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
 import {observable} from "mobx";
-import {Link, withRouter} from "react-router-dom";
-import {Input, InputGroup, InputGroupAddon} from "reactstrap";
-
+import {withRouter} from "react-router-dom";
 
 
 @withRouter @inject('store') @observer
