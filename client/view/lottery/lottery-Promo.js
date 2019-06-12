@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Input, InputGroup, InputGroupAddon} from "reactstrap";
+import {Input, InputGroup} from "reactstrap";
 import LotteryRules from "./lottery-Rules";
 import {inject, observer} from "mobx-react";
 import {action, observable} from "mobx";
@@ -13,10 +13,6 @@ class LotteryPromo extends Component {
     };
 
     url = new URL(window.location.href)
-
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         const data = this.props.store.config;
