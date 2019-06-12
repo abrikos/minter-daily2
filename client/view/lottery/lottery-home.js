@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
-import {action, observable} from "mobx";
-import {Input, InputGroup, InputGroupAddon} from "reactstrap";
 import LotteryRules from "./lottery-Rules";
 
 
