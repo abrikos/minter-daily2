@@ -1,9 +1,10 @@
-require = require("esm")(module)
+//require = require("esm")(module)
 //const Minter = require('./minter-app');
 //const m  = require( '../client/lib/MinterCore');
 //const Minter = m.default
-const l  = require( '../client/lib/Lottery');
-const Lottery = l.default
+//const l  = require( '../client/lib/Lottery');
+//const pb  = require( '../client/lib/PriceBet');
+const LotteryWallet = require('./LotteryWallet');
 const argv = require('minimist')(process.argv.slice(2));
 const moment = require('moment');
 
@@ -11,19 +12,20 @@ console.log('====================================== ',moment().format('YYYY-MM-D
 init(argv);
 
 async function init(argv) {
-    await Lottery.init();
+    await LotteryWallet.init();
     if (argv.day) {
-        Lottery.dailyWinner();
+        LotteryWallet.dailyWinner();
     } else if (argv.minute) {
-        Lottery.sendPromoCode();
+        LotteryWallet.sendPromoCode();
 
     } else if (argv.minute5) {
-        Lottery.payForPromo();
+        LotteryWallet.payForPromo();
 
     } else if (argv.hour) {
 
     } else if (argv.test) {
-        Lottery.test();
+        LotteryWallet.test();
+        //PriceBet.test();
     }
 
 }

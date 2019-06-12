@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
-import {inject, observer} from "mobx-react";
-import {withRouter} from "react-router";
-import {observable} from "mobx";
+import {inject} from "mobx-react";
 import {Link} from "react-router-dom";
 import {t} from "../../Translator";
+import LotteryLayout from "./lottery-Layout";
 
 
-@withRouter @inject('store') @observer
+@inject('store')
 class LotteryCodes extends Component {
-    @observable promos = [];
 
 
     constructor(props) {
@@ -19,7 +17,7 @@ class LotteryCodes extends Component {
 
     render() {
 
-        return <table>
+        const page= <table>
             <tbody>
             <tr><th>{t('Code')}</th></tr>
             {this.promos.map((p,i) => <tr key={i}>
@@ -27,6 +25,8 @@ class LotteryCodes extends Component {
 
         </tr>)}
             </tbody></table>;
+
+        return <LotteryLayout view={page}/>
     }
 }
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
-import LotteryRules from "./lottery-Rules";
+import LotteryRules from "./lottery-block-Rules";
+import LotteryLayout from "./lottery-Layout";
 
 
 @inject('store') @observer
@@ -9,15 +10,13 @@ class LotteryHome extends Component {
 
     constructor(props) {
         super(props)
-        this.data = this.props.store.config;
-        this.data.address = this.props.store.Lottery.address;
-        this.data.parentCode = this.props.match.params.code
+        this.data = this.props.store.Lottery.config;
     }
 
 
     render() {
 
-        return <div>
+        const page = <div>
 
 
             <ul className={'big-line-spacing'}>
@@ -84,7 +83,8 @@ class LotteryHome extends Component {
             </a>
             <LotteryRules data={this.data}/>
 
-        </div>
+        </div>;
+        return <LotteryLayout view={page}/>
     }
 }
 

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
+import PriceBetLayout from "./price-bet-Layout";
 
 
 @inject('store') @observer
@@ -14,10 +15,11 @@ class PriceBetHome extends Component {
 
     render() {
 
-        return <div>
+        const page =  <div>
 
             Price Bet
         </div>
+        return <PriceBetLayout view={page}/>
     }
 }
 

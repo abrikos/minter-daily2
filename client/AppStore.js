@@ -1,27 +1,19 @@
 import Lottery from "./lib/Lottery";
-import url from 'url';
+import PriceBet from "./lib/PriceBet";
+import MinterTransactions from "./lib/MinterTransactions";
 
 
 class AppStore {
     alert = {isOpen: false};
-    config = Lottery.config;
-    address = Lottery.address;
-    balance = 0;
-    Lottery = Lottery;
+    config = MinterTransactions.config;
+    coin = MinterTransactions.network.symbol;
 
 
     init = async () => {
-
-        const urlS = new URL(window.location.href)
-        const params = url.parse(window.location.href)
-        //await this.Minter.loadTtransactions(this.address);
+        this.Lottery = Lottery;
         await this.Lottery.init();
-        this.balance = this.Lottery.getPrize().toFixed(2);
-        /*setInterval(async ()=>{
-            //await this.Lottery.init();
-            this.balance = this.Lottery.getPrize().toFixed(2);
-        }, 1000)*/
-
+        //await Lottery.init();
+        //await PriceBet.init();
         console.log('Store init');
 
     };

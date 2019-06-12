@@ -29,15 +29,15 @@ class Routes extends React.Component {
         return <>
             <Switch>
                 <Route exact path='/' component={LotteryHome}/>
-                <Route path='/lottery' exact={true} render={props=><LotteryLayout view={<LotteryHome {...props}/>} {...props}/>}/>
-                <Route path='/lottery/codes' render={props=><LotteryLayout view={<LotteryCodes/>} {...props}/>}/>
-                <Route path='/lottery/winners' render={props=><LotteryLayout view={<LotteryWinners {...props}/>} {...props}/>}/>
-                <Route path='/lottery/members' render={props=><LotteryLayout view={<LotteryMembers {...props}/>} {...props}/>}/>
-                <Route path='/lottery/promo/:code' render={props=><LotteryLayout view={<LotteryPromo {...props}/>} {...props}/>}/>
+                <Route path='/lottery' exact={true} component={LotteryHome}/>
+                <Route path='/lottery/codes' component={LotteryCodes}/>
+                <Route path='/lottery/winners' component={LotteryWinners}/>
+                <Route path='/lottery/members' component={LotteryMembers}/>
+                <Route path='/lottery/promo/:code' component={LotteryPromo}/>
 
-                <Route path='/price-bet' exact={true} render={props=><PriceBetLayout view={<PriceBetHome {...props}/>} {...props}/>}/>
-                <Route path='/price-bet/create' render={props=><PriceBetLayout view={<PriceBetCreate {...props}/>} {...props}/>}/>
-                <Route path='/price-bet/view/:txid' render={props=><PriceBetLayout view={<PriceBetView {...props}/>} {...props}/>}/>
+                <Route path='/price-bet' exact={true} component={PriceBetHome}/>
+                <Route path='/price-bet/create' component={PriceBetCreate}/>
+                <Route path='/price-bet/view/:txid' component={PriceBetView}/>
 
             </Switch>
         </>;

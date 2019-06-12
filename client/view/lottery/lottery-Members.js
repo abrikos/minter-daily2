@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {inject} from "mobx-react";
 import {t} from '../../Translator'
+import LotteryLayout from "./lottery-Layout";
 
 
 @inject('store')
@@ -8,8 +9,10 @@ class LotteryMembers extends Component {
     //@observable items = [];
 
     constructor(props) {
-        super(props)
-        this.items = props.store.Lottery.getPlayersList()
+        super(props);
+        this.items = props.store.Lottery.getPlayersList();
+        this.players = props.store.Lottery.getPlayersCount();
+        this.balance = props.store.Lottery.getPrize().toFixed(2);
         this.init()
     }
 
@@ -19,7 +22,7 @@ class LotteryMembers extends Component {
     }
     render() {
 
-        return <div><table className={'table'}>
+        const page = <div><table className={'table'}>
             <tbody>
             <tr><th>{t('Members')}</th><th>{t('Chance')}*</th><th>{t('Date')}</th></tr>
             {this.items.map((p,i)=><tr key={i}>
@@ -31,6 +34,8 @@ class LotteryMembers extends Component {
         </table>
             <small>* Количество попаданий в таблицу выбора победителя</small>
         </div>
+
+        return <LotteryLayout view={page}/>
     }
 }
 

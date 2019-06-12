@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import {Input, InputGroup} from "reactstrap";
-import LotteryRules from "./lottery-Rules";
+import LotteryRules from "./lottery-block-Rules";
 import {inject, observer} from "mobx-react";
 import {action, observable} from "mobx";
+import LotteryLayout from "./lottery-Layout";
 
 @inject('store') @observer
 class LotteryPromo extends Component {
@@ -15,10 +16,8 @@ class LotteryPromo extends Component {
     url = new URL(window.location.href)
 
     render() {
-        const data = this.props.store.config;
-        data.address = this.props.store.Lottery.address;
-        data.parentCode = this.props.match.params.code
-        return <div>
+        const data = this.props.store.Lottery.config;
+        const page = <div>
             <h1>Ежедневная лотерея!</h1>
             <ul className={'big-line-spacing'}>
 
@@ -61,7 +60,8 @@ class LotteryPromo extends Component {
             <h4>Более подробнее об условиях:</h4>
 
             <LotteryRules data={data}/>
-        </div>
+        </div>;
+        return <LotteryLayout view={page}/>
     }
 }
 

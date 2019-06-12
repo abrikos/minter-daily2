@@ -1,17 +1,23 @@
 {
   "appName": "Minter Daily",
-  "net": "mainNet",
+  "net": "testNet",
   "games": {
     "lottery": {
-      "name": "Minter-Daily Lottery",
+      "name": "Lottery",
+      "address": "Mxe558fbe7c0a4ce066729d9a06291e8c6f5ba74aa",
       "price": 1,
       "percent": 0.5,
       "percentDaily": 0.90,
       "promoChance": 4,
-      "wallet": {
-        "mainNet": "Mx389a3ec7916a7c40928ab89248524f67a834eab7",
-        "testNet": "Mx6c2085a86deb8ee0a11f8e973d5287f743d20fa8"
+      "codePrepend": "LOTTERY-PROMO",
+      "types": {
+        "payPromo": "promo-payment",
+        "sendCode": "send-code"
       }
+    },
+    "priceBet": {
+      "name": "Price Bet",
+      "address": ""
     }
   },
   "mainNet": {
