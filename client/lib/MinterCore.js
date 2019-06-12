@@ -30,7 +30,6 @@ class Minter {
             return tx;
         }).filter(tx => tx.message !== 'this is a gift');
         const dayMarks = this.transactions.filter(tx => tx.message && tx.message.type === this.WinnerType);
-        console.log(dayMarks.map(t=>t.txn))
         let lastDate;
 
         for (const tx of dayMarks) {
