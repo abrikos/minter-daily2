@@ -2,7 +2,7 @@ const moment = require('moment');
 const mt = require('./MinterTransactions');
 const MinterTransactions = mt.default;
 
-class Lottery {
+class LotteryTransactions {
     constructor() {
         this.config = MinterTransactions.config.games.lottery;
     }
@@ -96,4 +96,4 @@ class Lottery {
 
 }
 
-export default new Lottery()
+export default new LotteryTransactions()

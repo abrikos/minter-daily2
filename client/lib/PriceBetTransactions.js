@@ -2,7 +2,7 @@ const axios = require('axios');
 const m = require('./MinterTransactions');
 const Minter = m.default;
 
-class PriceBet {
+class PriceBetTransactions {
     constructor() {
         this.config = Minter.config.games.priceBet;
         this.address = this.config.address;
@@ -31,4 +31,4 @@ class PriceBet {
 
 }
 
-export default new PriceBet()
+export default new PriceBetTransactions()

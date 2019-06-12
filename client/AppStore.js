@@ -1,5 +1,5 @@
-import Lottery from "./lib/Lottery";
-import PriceBet from "./lib/PriceBet";
+import Lottery from "./lib/LotteryTransactions";
+import PriceBet from "./lib/PriceBetTransactions";
 import MinterTransactions from "./lib/MinterTransactions";
 
 

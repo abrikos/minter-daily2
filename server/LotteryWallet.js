@@ -1,5 +1,5 @@
 require = require("esm")(module)
-const l  = require( '../client/lib/Lottery');
+const l  = require( '../client/lib/LotteryTransactions');
 const LotteryLib = l.default
 const moment = require('moment');
 const mt = require('../client/lib/MinterTransactions');
