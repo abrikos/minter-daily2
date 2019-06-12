@@ -123,7 +123,7 @@
     "start": "NODE_PATH=. node scripts/start.js",
     "admin": "node scripts/start-admin.js",
     "server": "node server/server.js",
-    "build": "node scripts/build.js",
+    "build": "NODE_PATH=. node scripts/build.js",
     "buildadmin": "node scripts/build-admin.js",
     "webpack": "NODE_ENV=production webpack-cli --config config/webpack.config.prod.js",
     "update": "node $NODE_DEBUG_OPTION  scripts/auto-migration.js",
