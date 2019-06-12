@@ -1,7 +1,18 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
 import {observable} from "mobx";
-import {Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, UncontrolledDropdown,} from "reactstrap";
+import {
+    Collapse,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    Nav,
+    Navbar,
+    NavbarBrand,
+    NavbarToggler,
+    NavItem,
+    UncontrolledDropdown,
+} from "reactstrap";
 import {Link, withRouter} from "react-router-dom";
 import {t} from "./Translator";
 import logo from './logo.svg'
