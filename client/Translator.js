@@ -7,11 +7,11 @@ export function  changeLanguage(lng){
         i18n.changeLanguage(lng);
     }
 
-export function t(key) {
+export function t(key, params) {
         return (
             <NamespacesConsumer>
                 {
-                    (t, { i18n }) => <>{t(key)}</>
+                    (t, { i18n }) => <>{t(key,params)}</>
                 }
             </NamespacesConsumer>
         )

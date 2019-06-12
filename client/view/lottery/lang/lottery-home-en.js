@@ -1,13 +1,11 @@
 import React from "react";
+import Address from "../../../Address";
 
 export default function (data) {
     return <div><ul className = {'big-line-spacing'}>
         <li>
-            <h1> Send <strong className = {'big2'}> {data.price} </strong> BIP to: </ h1>
-            <strong
-                className = {'wallet-address'}> <a
-                href = {`https://explorer.minter.network/address/$ {data.address}`}
-                className = {'red'}> {data.address} </a> </strong>
+            <h1> Send <strong className = {'big2'}> {data.price} </strong> {data.coin} to: </ h1>
+            <Address text={data.address}/>
             {data.parentCode &&
             <li> And in the <strong> "Message" </strong> field, enter my promotional code: <strong className = {'big2 red'}> {data.parentCode} </strong> </ li>}
         </ li>
@@ -17,7 +15,7 @@ export default function (data) {
 
         <li>
             And then, <strong className = {'big2'}> so that </strong> I, with all due respect, provide you
-            the ability to <strong className = {'big2'}> get&nbsp;Bips </strong> more, and
+            the ability to <strong className = {'big2'}> get&nbsp;{data.coin}s </strong> more, and
             good day and much <strong className = {'big2'}> more. </strong>
         </ li>
 
@@ -41,11 +39,11 @@ export default function (data) {
         </ li>
 
         <li>
-            I am completely absorbed in the confidence that you are a person who understands and already have the goal to ask: <strong className = {'big2'}>
+            I am completely absorbed in the confidence that you are a person who understands and already have the goal to ask: <strong className = {'big2'}>Is it
             pyramid? </strong>
             And I, honestly, will answer you honestly: <strong className = {'big2'}> Yes!
             But ... </strong>
-            But not only! This <strong className = {'big2'}> is also a lottery! </strong>
+            But not only! <strong className = {'big2'}>This is also a lottery! </strong>
         </ li>
 
         <li>

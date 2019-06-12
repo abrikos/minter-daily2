@@ -10,8 +10,8 @@ class LotteryTransactions {
     }
 
     async init() {
-        const address = this.config.address;
-        this.transactions = await MinterTransactions.loadTtransactions(address);
+
+        this.transactions = await MinterTransactions.loadTtransactions(this.config.address);
         const dayMarks = this.transactions.filter(tx => tx.message && tx.message.type === this.WinnerType);
         let lastDate;
 
@@ -28,9 +28,9 @@ class LotteryTransactions {
         }
 
         this.transactionsDay = lastDate ? this.transactions.filter(t => t.txn > lastDate) : this.transactions;
-        this.transactionsIn = this.transactionsDay.filter(t => t.from !== address);
-        this.transactionsOut = this.transactionsDay.filter(t => t.from === address);
-        this.transactionsWinners = this.transactions.filter(t => t.from === address && t.message && t.message.type === this.WinnerType);
+        this.transactionsIn = this.transactionsDay.filter(t => t.from !== this.config.address);
+        this.transactionsOut = this.transactionsDay.filter(t => t.from === this.config.address);
+        this.transactionsWinners = this.transactions.filter(t => t.from === this.config.address && t.message && t.message.type === this.WinnerType);
 
     }
 

@@ -5,12 +5,12 @@ const MinterTransactions = m.default;
 class PriceBetTransactions {
     constructor() {
         this.config = MinterTransactions.config.games.priceBet;
-        this.address = this.config.address;
+        this.config.coin = MinterTransactions.config[MinterTransactions.config.net].symbol;
 
     }
 
     async init() {
-        this.tranasctions = await MinterTransactions.loadTtransactions(this.address);
+        this.tranasctions = await MinterTransactions.loadTtransactions(this.config.address);
     }
 
     async cryptocompare(action, from, to, time, limit) {

@@ -36,13 +36,15 @@
   },
   "mainNet": {
     "chainId": 1,
-    "explorerUrl": "https://explorer-api.minter.network/api/v1",
+    "explorerUrl": "https://explorer.minter.network",
+    "explorerApiUrl": "https://explorer-api.minter.network/api/v1",
     "symbol": "BIP",
     "apiUrl": "https://minter-node-1.testnet.minter.network:8841"
   },
   "testNet": {
     "chainId": 2,
-    "explorerUrl": "https://explorer-api.testnet.minter.network/api/v1",
+    "explorerUrl": "https://testnet.explorer.minter.network",
+    "explorerApiUrl": "https://explorer-api.testnet.minter.network/api/v1",
     "symbol": "MNT",
     "apiUrl": "http://testnet.node.minter.one:8841"
   }

@@ -39,7 +39,7 @@ class MinterTransactions {
 
     async explorer(action) {
         try {
-            const res = await axios(`${this.network.explorerUrl}${action}`)
+            const res = await axios(`${this.network.explorerApiUrl}${action}`)
             return res.data.data
         } catch (e) {
             return console.error(e.response.status, e.response.config.url)

@@ -1,14 +1,13 @@
 import React from "react";
+import Address from "../../../Address";
 
 export default function (data) {
     return <div>
         <ul className={'big-line-spacing'}>
             <li>
-                <h1>Отправьте <strong className={'big2'}>{data.price}</strong> BIP на адрес:</h1>
-                <strong
-                    className={'wallet-address'}><a
-                    href={`https://explorer.minter.network/address/${data.address}`}
-                    className={'red'}>{data.address}</a></strong>
+                <h1>Отправьте <strong className={'big2'}>{data.price}</strong> {data.coin} на адрес:</h1>
+                <Address text={data.address}/>
+
                 {data.parentCode &&
                 <li>И в поле <strong>"Message"</strong> укажите мой промокод: <strong className={'big2 red'}>{data.parentCode}</strong></li>}
             </li>
@@ -18,7 +17,7 @@ export default function (data) {
 
             <li>
                 А затем, <strong className={'big2'}>чтобы</strong> я Вам, при всем своем уважении, обеспечил
-                возможность <strong className={'big2'}>получить&nbsp;Бипов</strong> поболее, а в
+                возможность <strong className={'big2'}>получить&nbsp;{data.coin}</strong> поболее, а в
                 хороший день и гораздо <strong className={'big2'}>поболее.</strong>
             </li>
 

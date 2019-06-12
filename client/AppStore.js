@@ -8,6 +8,8 @@ class AppStore extends Component{
     alert = {isOpen: false};
     config = MinterTransactions.config;
     coin = MinterTransactions.network.symbol;
+    network = MinterTransactions.config[MinterTransactions.config.net];
+
 
     init = async () => {
         this.Lottery = Lottery;
