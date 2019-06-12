@@ -19,6 +19,8 @@ class Lottery {
         this.counter = new Date().valueOf();
         await Minter.loadTtransactions(this.address);
     }
+
+
     async getLastBlock(){
         return await Minter.getLastBlock()
     }
