@@ -16,7 +16,6 @@ class HighChartsCustom extends Component {
 
     constructor(props) {
         super(props)
-        console.log('zzzzzzzzzzzzz')
         this.init()
     }
 
@@ -24,8 +23,6 @@ class HighChartsCustom extends Component {
         const data = await  PriceBet.cryptocompare('histoday', this.props.pair.from,this.props.pair.to,0, 50);
 
         this.data = data.map(d=>[d.time*1000,d.open*1])
-        console.log(Date.UTC(1970, 10, 25), this.data[0])
-
     };
 
 
