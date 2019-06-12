@@ -17,7 +17,21 @@
     },
     "priceBet": {
       "name": "Price Bet",
-      "address": ""
+      "pairs": [
+        {
+          "from": "BTC",
+          "to": "USD"
+        },
+        {
+          "from": "ETH",
+          "to": "USD"
+        },
+        {
+          "from": "XRP",
+          "to": "USD"
+        }
+      ],
+      "address": "Mx72d57ab7a5134fc5b016026dfb97af76cfb50814"
     }
   },
   "mainNet": {

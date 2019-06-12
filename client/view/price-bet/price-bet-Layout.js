@@ -8,23 +8,20 @@ import PriceBet from "../../lib/PriceBetTransactions";
 class PriceBetLayout extends Component {
     @observable data;
 
-    constructor(props) {
-        super(props)
-        this.init()
+    constructor(props){
+        super(props);
+        const pairs = this.props.store.PriceBet.config.pairs;
+        this.pair = pairs[0]
     }
-
-    init = async ()=>{
-        const data = await  PriceBet.cryptocompare('histohour', 'BTC','USD',0);
-        console.log(data)
-        this.data = data.map(d=>[d.time,d.open*1]).reverse()
-    };
 
     render() {
 
         return <div>
             {this.props.view}
-            <HighChartsCustom xTitle={'Date'} yTitle={'BTC/USD'} data={this.data}/>
+            <hr/>
+            {this.props.noChart || <HighChartsCustom pair={this.pair}/>}
         </div>
+
     }
 }
 

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Input, InputGroup} from "reactstrap";
-import LotteryRules from "./lottery-block-Rules";
+import LotteryRules from "./lang/lottery-rules-ru";
 import {inject, observer} from "mobx-react";
 import {action, observable} from "mobx";
 import LotteryLayout from "./lottery-Layout";

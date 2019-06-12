@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {observer, Provider} from 'mobx-react';
+import {Provider} from 'mobx-react';
 import {Router} from 'react-router-dom';
 import Context from './context';
 import {createBrowserHistory as createHistory} from 'history';
@@ -8,12 +8,11 @@ import './css/minter.css';
 import Layout from "client/Layout";
 
 
-@observer
 class App extends Component {
-
 
     constructor(props) {
         super(props);
+
         this.history = props.history || createHistory(this.props);
         this.history.listen((location, action) => {
             // location is an object like window.location
@@ -22,6 +21,12 @@ class App extends Component {
         });
     }
 
+    state = {language:'ru'};
+    changeLanguage = lng=>{
+        console.log(lng)
+        this.setState({language:lng})
+    };
+
 
     render() {
         let {rootPath} = this.props;
@@ -29,7 +34,7 @@ class App extends Component {
             <Provider store={this.props.store}>
                 <Router history={this.history}>
                     <Context.Provider value={{rootPath}}>
-                        <Layout/>
+                        <Layout app={this} language={this.state.language}/>
                     </Context.Provider>
                 </Router>
             </Provider>

@@ -14,7 +14,7 @@ import {
     UncontrolledDropdown,
 } from "reactstrap";
 import {Link, withRouter} from "react-router-dom";
-import {t} from "./Translator";
+import {t, changeLanguage} from "./Translator";
 import logo from './logo.svg'
 
 
@@ -32,6 +32,11 @@ class TopMenu extends React.Component {
         };
         document.title = 'Minter Daily';
     }
+
+    langSwitch = lng=>{
+        this.props.app.changeLanguage(lng);
+        changeLanguage(lng)
+    };
 
     navItem = (item) => {
         //const active =  !!this.props.location.pathname.match(item.path);
@@ -84,22 +89,22 @@ class TopMenu extends React.Component {
                         </UncontrolledDropdown>
                         {menuItems.map(this.navItem)}
 
-{/*
+
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
                                 {t('Language')}
                             </DropdownToggle>
                             <DropdownMenu>
-                                <DropdownItem onClick={() => changeLanguage('ru')}>
+                                <DropdownItem onClick={() => this.langSwitch('ru')}>
                                     RU
                                 </DropdownItem>
-                                <DropdownItem onClick={() => changeLanguage('en')}>
+                                <DropdownItem onClick={() => this.langSwitch('en')}>
                                     EN
                                 </DropdownItem>
 
                             </DropdownMenu>
                         </UncontrolledDropdown>
-*/}
+
                     </Nav>
                 </Collapse>
             </Navbar>

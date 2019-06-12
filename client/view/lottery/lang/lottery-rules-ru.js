@@ -1,15 +1,6 @@
 import React from 'react';
-import {inject} from 'mobx-react';
-
-
-@inject('store')
-class TopMenu extends React.Component {
-
-
-    render() {
-        const config = this.props.store.Lottery.config;
-        return (
-            <div>
+export default function(config){
+            return <div>
                 <ul className={'big-line-spacing'}>
                     <li>Цена ставки (назовем ее <span className={'red'}>"биплет"</span>:) - <span
                         className={'big2'}>{config.price}</span> BIP
@@ -58,8 +49,5 @@ class TopMenu extends React.Component {
 
                 </ul>
             </div>
-        );
-    }
 }
 
-export default TopMenu;

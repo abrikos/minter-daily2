@@ -2,16 +2,19 @@ import React, {Component} from 'react';
 import TopMenu from "client/TopMenu";
 import {withRouter} from "react-router";
 import Routes from "client/Routes";
+import {t} from "client/Translator";
+import i18n from "client/i18n";
+import {inject} from "mobx-react";
 
 
-@withRouter
+@withRouter @inject('store')
 class Layout extends Component {
 
 
     render() {
         let {rootPath, ...props} = this.props;
         return <div>
-            <TopMenu/>
+            <TopMenu app={props.app}/>
             {/*<Alert toggle={this.onDismiss} {...alertProps}/>*/}
             <div className={'container-fluid py-2'}>
                 <Routes store={this.store} {...props}/>
@@ -24,27 +27,27 @@ class Layout extends Component {
                         <div className="footer__menu-item"><a href="https://www.minter.network/"
                                                               target="_blank"
                                                               rel="nofollow noopener noreferrer"
-                                                              className="footer__link link--hover">Intro</a>
+                                                              className="footer__link link--hover">{t('Intro')}</a>
                         </div>
                         <div className="footer__menu-item"><a href="https://about.minter.network/"
                                                               target="_blank"
                                                               rel="nofollow noopener noreferrer"
-                                                              className="footer__link link--hover">Network</a>
+                                                              className="footer__link link--hover">{t('Network')}</a>
                         </div>
                         <div className="footer__menu-item"><a href="https://console.minter.network/"
                                                               target="_blank"
                                                               rel="nofollow noopener noreferrer"
-                                                              className="footer__link link--hover">Console</a>
+                                                              className="footer__link link--hover">{t('Console')}</a>
                         </div>
                         <div className="footer__menu-item"><a href="https://status.minter.network/"
                                                               target="_blank"
                                                               rel="nofollow noopener noreferrer"
-                                                              className="footer__link link--hover">Status</a>
+                                                              className="footer__link link--hover">{t('Status')}</a>
                         </div>
                         <div className="footer__menu-item"><a href="https://explorer.minter.network/"
                                                               target="_blank"
                                                               rel="nofollow noopener noreferrer"
-                                                              className="footer__link link--hover">Explorer</a>
+                                                              className="footer__link link--hover">{t('Explorer')}</a>
                         </div>
                         <div className="footer__menu-item"><a href="https://github.com/MinterTeam"
                                                               target="_blank"
@@ -54,7 +57,7 @@ class Layout extends Component {
                         <div className="footer__menu-item"><a href="https://docs.minter.network"
                                                               target="_blank"
                                                               rel="nofollow noopener noreferrer"
-                                                              className="footer__link link--hover">Docs</a>
+                                                              className="footer__link link--hover">{t('Docs')}</a>
                         </div>
                     </div>
                 </div>
