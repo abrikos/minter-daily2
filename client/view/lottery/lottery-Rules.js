@@ -1,18 +1,9 @@
 import React from 'react';
-import {inject, observer} from 'mobx-react';
-import {observable} from "mobx";
-import {withRouter} from "react-router-dom";
+import {inject} from 'mobx-react';
 
 
-@withRouter @inject('store') @observer
+@inject('store')
 class TopMenu extends React.Component {
-    @observable address = '';
-    @observable balance = 0;
-    @observable menuPulled = false;
-
-    constructor(props) {
-        super(props);
-    }
 
 
     render() {
