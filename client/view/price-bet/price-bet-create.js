@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
 import PriceBetLayout from "./price-bet-Layout";
-import {observable, action} from "mobx";
-import {Button, Input, InputGroup, InputGroupAddon, InputGroupText} from "reactstrap";
+import {action, observable} from "mobx";
+import {Input, InputGroup, InputGroupAddon, InputGroupText} from "reactstrap";
 import HighChartsCustom from "./highcharts";
-import DatePicker from "react-datepicker";
-import {registerLocale, setDefaultLocale} from "react-datepicker";
+import DatePicker, {registerLocale} from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import {t} from "../../Translator";
@@ -126,8 +125,6 @@ class PriceBetCreate extends Component {
         && (!!this.bet.price || (!!this.bet.priceLow && !!this.bet.priceHi));
 
     render() {
-        const comparision = [{type: 'lt', title: 'Less than'}, {type: 'gt', title: 'Greater than'}, {type: 'eq', title: 'Equal'}, {type: 'between', title: 'Between'},];
-
         const page = <div className={'p-5'}>
             {this.inputGroup('pair', 'Choose pair', <Input type="select" onChange={this.setPair}>
                 {this.pairs.map((p, i) => <option key={i} value={JSON.stringify(p)}>{p.from}/{p.to}</option>)}

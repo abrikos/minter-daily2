@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
 import HighChartsCustom from './highcharts'
 import {observable} from "mobx";
-import PriceBet from "../../lib/PriceBetTransactions";
 
 @inject('store') @observer
 class PriceBetLayout extends Component {
