@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
 import PriceBetLayout from "./price-bet-Layout";
+import {Link} from "react-router-dom";
 
 
 @inject('store') @observer
@@ -9,15 +10,23 @@ class PriceBetHome extends Component {
 
     constructor(props) {
         super(props)
-        this.data = this.props.store.config;
+
     }
 
 
     render() {
-
+        const config = this.props.store.PriceBet.config;
         const page =  <div>
 
-            Price Bet
+            <h3>Предлагаем Вам делать ставки на стоимость криптовалют в выбранный Вами день.</h3>
+            Для этого необходимо на <Link to={'/price-bet/create'} className={'red'}>странице создания ставки</Link> выбрать
+            <ul>
+                <li>Криптовалютную пару</li>
+                <li>Дату проверки цены</li>
+                <li>Предполагаемую стоимость криптовалюты</li>
+            </ul>
+            После этого откроется информационная панель с инструкциями, где будет указан адрес куда отправлять {config.coin} и ОБЯЗАТЕЛЬНАЯ строка в поле "Сообщение"
+            По этой строке
         </div>
         return <PriceBetLayout view={page}/>
     }
