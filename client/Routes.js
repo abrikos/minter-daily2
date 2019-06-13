@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Route,  Switch } from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 import {inject, observer} from 'mobx-react';
 import LotteryHome from './view/lottery/lottery-home';
 import LotteryCodes from "./view/lottery/lottery-Codes";
@@ -7,8 +7,6 @@ import LotteryWinners from "./view/lottery/lottery-Winners";
 import LotteryMembers from "./view/lottery/lottery-Members";
 import LotteryPromo from "./view/lottery/lottery-Promo";
 import PriceBetHome from "client/view/price-bet/price-bet-home";
-import LotteryLayout from "client/view/lottery/lottery-Layout";
-import PriceBetLayout from "client/view/price-bet/price-bet-Layout";
 import PriceBetCreate from "client/view/price-bet/price-bet-create";
 import PriceBetView from "client/view/price-bet/price-bet-view";
 
