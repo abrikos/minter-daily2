@@ -148,8 +148,8 @@ class PriceBetCreate extends Component {
                 {this.inputGroup('priceHi', 'Choose high price', <Input type="number" onChange={this.setPriceHi}/>)}
             </div>}
 
-            {JSON.stringify(this.errors)} <br/>
-            {JSON.stringify(this.bet)}
+            {/*{JSON.stringify(this.errors)} <br/>
+            {JSON.stringify(this.bet)}*/}
 
             {this.formIsValid() && <div className={'alert alert-success'}>
                 {/*<div className={'alert alert-success'}>*/}
