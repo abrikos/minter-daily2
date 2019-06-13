@@ -40,39 +40,73 @@
      inkscape:window-height="1052"
      id="namedview3769"
      showgrid="false"
-     inkscape:zoom="7.8960257"
-     inkscape:cx="14.01951"
-     inkscape:cy="24.602843"
+     inkscape:zoom="15.792051"
+     inkscape:cx="16.80907"
+     inkscape:cy="18.589111"
      inkscape:window-x="1080"
      inkscape:window-y="498"
      inkscape:window-maximized="1"
-     inkscape:current-layer="text3777" />
+     inkscape:current-layer="svg3767" />
   <circle
      fill="#d15c22"
      cx="18"
      cy="18"
      r="18"
-     id="circle3763" />
+     id="circle3763"
+     inkscape:export-filename="/home/abrikos/Projects/minter-daily2/public/logo.png"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96" />
   <path
-     d="M 17.9,10.73 20,8.68 a 1.44,1.44 0 0 1 2,0 c 0.54,0.53 0.54,1.4 0,1.93 l -3,2.91 a 1.44,1.44 0 0 1 -2.1,0.11 L 9.6,6.55 a 1.33,1.33 0 0 1 0,-1.93 1.44,1.44 0 0 1 1.99,0 l 6.3,6.11 z M 10.6,9.74 c 0.77,0 1.4,0.7 1.4,1.55 v 8.9 c 0,0.86 -0.63,1.56 -1.4,1.56 -0.79,0 -1.42,-0.7 -1.42,-1.55 v -8.9 c 0,-0.87 0.63,-1.56 1.41,-1.56 z M 25.41,4.22 c 0.78,0 1.41,0.67 1.41,1.5 v 14.54 c 0,0.82 -0.63,1.49 -1.4,1.49 -0.78,0 -1.41,-0.67 -1.41,-1.49 V 5.71 c 0,-0.82 0.63,-1.49 1.4,-1.49 z"
+     d="M 17.9,16.73 20,14.68 a 1.44,1.44 0 0 1 2,0 c 0.54,0.53 0.54,1.4 0,1.93 l -3,2.91 a 1.44,1.44 0 0 1 -2.1,0.11 L 9.6,12.55 a 1.33,1.33 0 0 1 0,-1.93 1.44,1.44 0 0 1 1.99,0 l 6.3,6.11 z m -7.3,-0.99 c 0.77,0 1.4,0.7 1.4,1.55 v 8.9 c 0,0.86 -0.63,1.56 -1.4,1.56 -0.79,0 -1.42,-0.7 -1.42,-1.55 v -8.9 c 0,-0.87 0.63,-1.56 1.41,-1.56 z m 14.81,-5.52 c 0.78,0 1.41,0.67 1.41,1.5 v 14.54 c 0,0.82 -0.63,1.49 -1.4,1.49 -0.78,0 -1.41,-0.67 -1.41,-1.49 V 11.71 c 0,-0.82 0.63,-1.49 1.4,-1.49 z"
      id="path3765"
      inkscape:connector-curvature="0"
-     style="fill:#ffffff" />
+     style="fill:#ffffff"
+     inkscape:export-filename="/home/abrikos/Projects/minter-daily2/public/logo.png"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96" />
+  <path
+     style="fill:none;stroke:#d15c22;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 8.8810501,22.93837 H 12.363815"
+     id="path4722"
+     inkscape:connector-curvature="0" />
+  <path
+     inkscape:connector-curvature="0"
+     id="path4724"
+     d="m 23.746722,22.93837 h 3.482765"
+     style="fill:none;stroke:#d15c22;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     style="fill:#280b0b"
+     d="M 35.257228,23.106625 H 0.7455086 A 18,18 0 0 0 6.0541026,31.466 H 29.938869 a 18,18 0 0 0 5.318359,-8.359375 z"
+     id="path196"
+     inkscape:connector-curvature="0" />
   <g
      aria-label="BET"
-     style="font-style:normal;font-weight:normal;font-size:10.23780727px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25594518"
-     id="text3777">
+     style="font-style:normal;font-weight:normal;font-size:10.23780727px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#d15c22;fill-opacity:1;stroke:none;stroke-width:0.25594518"
+     id="text3777"
+     transform="matrix(0.75628069,0,0,0.75628069,4.4441353,6.6203481)">
     <path
        d="m 10.831231,26.321503 q 0.454902,0 0.689852,-0.199957 0.23495,-0.199958 0.23495,-0.589874 0,-0.384918 -0.23495,-0.584875 -0.23495,-0.204956 -0.689852,-0.204956 H 9.7664589 v 1.579662 z m 0.06499,3.264301 q 0.579876,0 0.869814,-0.244948 0.294937,-0.244947 0.294937,-0.739841 0,-0.484897 -0.289938,-0.724845 -0.289938,-0.244948 -0.874813,-0.244948 H 9.7664589 v 1.954582 z m 1.789617,-2.684425 q 0.619867,0.179961 0.959794,0.664857 0.339927,0.484896 0.339927,1.189745 0,1.079769 -0.729843,1.609656 -0.729844,0.529886 -2.219525,0.529886 H 7.8418711 v -7.463401 h 2.8893809 q 1.554667,0 2.249518,0.469899 0.699851,0.469899 0.699851,1.504678 0,0.544883 -0.254946,0.929801 -0.254945,0.379918 -0.739841,0.564879 z"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Dingbats;-inkscape-font-specification:'Dingbats Bold';stroke-width:0.25594518"
-       id="path178" />
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Dingbats;-inkscape-font-specification:'Dingbats Bold';fill:#d15c22;stroke-width:0.25594518;fill-opacity:1"
+       id="path178"
+       inkscape:export-filename="/home/abrikos/Projects/minter-daily2/public/logo.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       inkscape:connector-curvature="0" />
     <path
        d="m 15.640201,23.432122 h 5.193888 v 1.454688 h -3.2693 v 1.389702 h 3.074341 v 1.454689 h -3.074341 v 1.709634 h 3.379276 v 1.454688 h -5.303864 z"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Dingbats;-inkscape-font-specification:'Dingbats Bold';stroke-width:0.25594518"
-       id="path180" />
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Dingbats;-inkscape-font-specification:'Dingbats Bold';fill:#d15c22;stroke-width:0.25594518;fill-opacity:1"
+       id="path180"
+       inkscape:export-filename="/home/abrikos/Projects/minter-daily2/public/logo.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       inkscape:connector-curvature="0" />
     <path
        d="m 21.748893,23.432122 h 6.878527 v 1.454688 h -2.47447 v 6.008713 H 24.228362 V 24.88681 h -2.479469 z"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Dingbats;-inkscape-font-specification:'Dingbats Bold';stroke-width:0.25594518"
-       id="path182" />
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Dingbats;-inkscape-font-specification:'Dingbats Bold';fill:#d15c22;stroke-width:0.25594518;fill-opacity:1"
+       id="path182"
+       inkscape:export-filename="/home/abrikos/Projects/minter-daily2/public/logo.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>
