@@ -96,22 +96,18 @@ class PriceBetCreate extends Component {
 
             {this.inputGroup('price', 'Choose price', <Input type="number" onChange={this.setPrice}/>)}
             {/*{this.inputGroup('value', 'How much do You bet', <Input type={'number'} onChange={this.setBet}/>)}*/}
-
-
-
-
-
+e
 
             {Object.keys(this.errors).length===0 && Object.keys(this.bet).length===3 && <div className={'alert alert-success'}>
-                {t('Send the desired number of BIPs to the address {{address}} and ALWAYS insert this line in the "Message" field', {address:this.props.store.PriceBet.address})}
+            {/*<div className={'alert alert-success'}>*/}
                 <ul>
                     <li>{t('Address')}: <Address text={this.props.store.PriceBet.config.address}/></li>
                     <li>{t('Amount')}: {t('Any')} </li>
                     <li>{t('Coin')}: <strong className={'big2'}>{this.props.store.PriceBet.config.coin}</strong> </li>
-                    <li>{t('Message')}:
+                    <li>{t('Send the desired number of {{coin}}s and ALWAYS insert this line in the "Message" field', {coin:this.props.store.PriceBet.config.coin})}:
 
                         <InputGroup>
-                            <Input defaultValue={JSON.stringify(this.bet)} readOnly={true} onClick={e=>e.target.select()}/>
+                            <Input value={JSON.stringify(this.bet)} readOnly={true} onClick={e=>e.target.select()}/>
                             <InputGroupAddon addonType="append">
                                 <InputGroupText><CopyButton text={JSON.stringify(this.bet)}/></InputGroupText>
                             </InputGroupAddon>
