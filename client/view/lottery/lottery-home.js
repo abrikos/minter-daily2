@@ -12,7 +12,7 @@ class LotteryHome extends Component {
 
     constructor(props) {
         super(props)
-        this.data = this.props.store.Lottery.config;
+        console.log('zzzzzzzzzzz',this.props)
     }
 
 
