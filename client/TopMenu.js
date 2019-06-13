@@ -30,7 +30,11 @@ class TopMenu extends React.Component {
         this.state = {
             collapsed: true
         };
-        document.title = 'Minter Daily';
+        document.title = this.props.store.config.appName;
+        const meta = document.createElement('meta');
+        meta.setAttribute('property', 'og:title');
+        meta.setAttribute('content', document.title);
+        document.getElementsByTagName('head')[0].appendChild(meta);
     }
 
     langSwitch = lng=>{
