@@ -19,7 +19,8 @@ class PriceBetTransactions {
             const res = await axios(url)
             return res.data.Data
         } catch (e) {
-            return console.error(e.response.status, e.response.config.url)
+            console.error(e)
+            return [];
         }
     }
 
