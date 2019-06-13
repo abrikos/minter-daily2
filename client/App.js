@@ -12,6 +12,8 @@ class App extends Component {
 
     constructor(props) {
         super(props);
+        const language = i18n.language==='ru-RU'?'ru':i18n.language;
+        this.state = {language};
         this.history = props.history || createHistory(this.props);
         this.history.listen((location, action) => {
             // location is an object like window.location
@@ -20,7 +22,7 @@ class App extends Component {
         });
     }
 
-    state = {language: i18n.language};
+
     changeLanguage = lng => {
         this.setState({language: lng})
     };
