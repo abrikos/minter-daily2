@@ -17,16 +17,13 @@ class LotteryHome extends Component {
 
 
     render() {
-        let page;
-        switch (this.props.language) {
-            case 'ru':
-                page = <div>{lotteryHomeRu(this.props.store.Lottery.config)}{lotteryRulesRu(this.props.store.Lottery.config)}</div>;
+        const page = <div>
+            {this.props.language==='ru' && lotteryHomeRu(this.props.store.Lottery.config)}
+            {this.props.language==='ru' && lotteryRulesRu(this.props.store.Lottery.config)}
 
-                break;
-            case 'en':
-                page = <div>{lotteryHomeEn(this.props.store.Lottery.config)}{lotteryRulesEn(this.props.store.Lottery.config)}</div>;
-                break;
-        }
+            {this.props.language==='en' && lotteryHomeEn(this.props.store.Lottery.config)}
+            {this.props.language==='en' && lotteryRulesEn(this.props.store.Lottery.config)}
+        </div>;
 
         return <LotteryLayout view={page}/>
     }
